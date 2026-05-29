@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://taskbar-hero-wiki.yamastudio.net/sitemap.xml
