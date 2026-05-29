@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タスクバーヒーロー (TBH: Task Bar Hero) 非公式攻略Wiki</title>
+<style>
+  :root {
+    --primary-color: #1a2a3a;
+    --secondary-color: #2a4365;
+    --bg-color: #f4f5f7;
+    --text-color: #333;
+    --border-color: #ccc;
+  }
+  body {
+    font-family: 'Segoe UI', Meiryo, 'Hiragino Kaku Gothic ProN', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid #ffaa00;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #cbd5e0;
+  }
+  .container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    gap: 20px;
+  }
+  /* サイドバーのスタイル */
+  .sidebar {
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+  }
+  .sidebar h3 {
+    font-size: 16px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 8px;
+    margin-top: 0;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  .sidebar a {
+    text-decoration: none;
+    color: #2b6cb0;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .sidebar a:hover {
+    background-color: #ebf8ff;
+  }
+  /* メインコンテンツのスタイル */
+  .main-content {
+    flex: 1;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  h2 {
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 40px;
+    font-size: 22px;
+  }
+  h2:first-child {
+    margin-top: 0;
+  }
+  h3 {
+    border-left: 5px solid var(--secondary-color);
+    padding-left: 12px;
+    background: #f0f4f8;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 25px;
+    font-size: 18px;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  ul.content-list {
+    padding-left: 20px;
+  }
+  ul.content-list li {
+    margin-bottom: 8px;
+  }
+  /* テーブルスタイル */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 25px;
+  }
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+  }
+  th {
+    background-color: #e2e8f0;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  /* レアリティカラー設定 */
+  .rarity-common { color: #718096; font-weight: bold; }
+  .rarity-uncommon { color: #38a169; font-weight: bold; }
+  .rarity-rare { color: #3182ce; font-weight: bold; }
+  .rarity-legendary { color: #d69e2e; font-weight: bold; }
+  .rarity-immortal { color: #dd6b20; font-weight: bold; }
+  .rarity-arcana { color: #805ad5; font-weight: bold; }
+  .rarity-beyond { color: #d53f8c; font-weight: bold; }
+  .rarity-celestial { color: #319795; font-weight: bold; }
+  .rarity-divine { color: #ecc94b; font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.3); }
+  .rarity-cosmic { color: #000; font-weight: bold; background: linear-gradient(90deg, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0px 0px 2px rgba(255,255,255,0.5); }
+  
+  .notice {
+    background: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #718096;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: auto;
+      position: static;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TBH: Task Bar Hero 攻略Wiki</h1>
+  <p>仕事中も冒険は止まらない。究極のタスクバー放置ハクスラRPG</p>
+</header>
+
+<div class="container">
+  <!-- サイドバー -->
+  <aside class="sidebar">
+    <h3>メニュー</h3>
+    <ul>
+      <li><a href="#about">ゲーム概要・基本情報</a></li>
+      <li><a href="#guide">初心者攻略ガイド</a></li>
+      <li><a href="#classes">クラス(職業)・DLC情報</a></li>
+      <li><a href="#items">アイテム・レアリティ一覧</a></li>
+      <li><a href="#cube">キューブシステム（装備強化）</a></li>
+      <li><a href="#market">Steamマーケット金策</a></li>
+    </ul>
+    <h3>外部リンク</h3>
+    <ul>
+      <li><a href="https://store.steampowered.com/app/3678970/_/" target="_blank">Steamストアページ</a></li>
+    </ul>
+  </aside>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <div class="notice">
+      <strong>お知らせ:</strong> 本Wikiは2026年5月27日に正式リリースされた『TBH: Task Bar Hero』の最新攻略情報をまとめています。
+    </div>
+
+    <h2 id="about">ゲーム概要・基本情報</h2>
+    <p>『TBH: Task Bar Hero』は、Nugem Studio / Tesseract Studioによって開発された、タスクバーの小さなウィンドウで動作する究極の放置型ハクスラRPGです。<br>
+    ピクセルアートの英雄たちが自動的に戦い、戦利品を集めて強くなっていきます。仕事や日常の裏側で起動しておくのに最適な軽量設計が特徴です。</p>
+    <table>
+      <tbody>
+        <tr><th>タイトル</th><td>TBH: Task Bar Hero (タスクバーヒーロー)</td></tr>
+        <tr><th>ジャンル</th><td>放置ゲーム、ハクスラ、アクションRPG</td></tr>
+        <tr><th>リリース日</th><td>2026年5月27日</td></tr>
+        <tr><th>価格</th><td>基本プレイ無料 (Free to Play) ※一部DLCあり</td></tr>
+        <tr><th>対応言語</th><td>日本語、英語、中国語を含む全16言語対応</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="guide">初心者攻略ガイド</h2>
+    <h3>序盤の進め方</h3>
+    <ul class="content-list">
+      <li><strong>とりあえず起動して放置：</strong> 本作は完全オートで戦闘が進行します。ゲームをタスクバーに配置し、他の作業をしている間にキャラクターが勝手にレベリングとアイテム収集を行ってくれます。</li>
+      <li><strong>アクトと難易度：</strong> ゲーム内には「3つのAct(章)」と「4つの難易度ティア」が存在します。敵が強くて進めなくなったら、一つ前の難易度やActに戻して放置狩り（ファーム）を行いましょう。</li>
+      <li><strong>ビルドの構築：</strong> 50種類以上のモンスターを倒してドロップする装備を集め、クラス・アイテム・スキルを組み合わせて自分だけのビルドを構築するのが攻略の鍵です。</li>
+    </ul>
+
+    <h2 id="classes">クラス(職業)・DLC情報</h2>
+    <p>基本クラスの他に、ストアからDLCとして追加クラスを導入することが可能です。多彩なスキルと戦略を試すことができます。</p>
+    <table>
+      <thead>
+        <tr><th>クラス名 / DLC</th><th>価格</th><th>特徴</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Priest (プリースト)</strong></td><td>無料</td><td>回復と支援に優れたクラス。生存力が高く、高難易度の放置に安定感をもたらします。</td></tr>
+        <tr><td><strong>Hunter (ハンター)</strong></td><td>$3.99 ($3.19 セール時)</td><td>遠距離からの物理攻撃に特化。殲滅力が高く、周回効率を上げるのに最適です。</td></tr>
+        <tr><td><strong>Slayer (スレイヤー)</strong></td><td>$3.99 ($3.19 セール時)</td><td>近接特化のアタッカー。圧倒的な火力でボス級のモンスターを素早く処理します。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="items">アイテム・レアリティ一覧</h2>
+    <p>500種類以上のユニークアイテムが存在し、ハクスラお馴染みの膨大なレアリティ階層が用意されています。上位のレアリティになるほどドロップ率は低くなりますが、強力なステータスが付与されます。</p>
+    <table>
+      <thead>
+        <tr><th>レアリティ名</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rarity-common">Common (コモン)</td><td>最序盤の繋ぎ装備。すぐに不要になります。</td></tr>
+        <tr><td class="rarity-uncommon">Uncommon (アンコモン)</td><td>少しステータスが付いた装備。</td></tr>
+        <tr><td class="rarity-rare">Rare (レア)</td><td>序盤〜中盤の主力装備。</td></tr>
+        <tr><td class="rarity-legendary">Legendary (レジェンダリー)</td><td>強力な特殊効果が付き始める基準点。</td></tr>
+        <tr><td class="rarity-immortal">Immortal (イモータル)</td><td>難易度を上げるとドロップしやすくなる上位装備。</td></tr>
+        <tr><td class="rarity-arcana">Arcana (アルカナ)</td><td>エンドコンテンツ入り口の装備。</td></tr>
+        <tr><td class="rarity-beyond">Beyond (ビヨンド)</td><td>圧倒的なステータスを誇る超レア装備。</td></tr>
+        <tr><td class="rarity-celestial">Celestial (セレスティアル)</td><td>神々しい力を宿す極稀なドロップ。</td></tr>
+        <tr><td class="rarity-divine">Divine (ディヴァイン)</td><td>最高難易度でのみドロップが期待できる神話級アイテム。</td></tr>
+        <tr><td class="rarity-cosmic">Cosmic (コズミック)</td><td>本作の最高峰レアリティ。マーケットで高額取引の対象になります。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="cube">キューブシステム（装備強化）</h2>
+    <p>ゲーム中盤以降の攻略の要となるのが<strong>「キューブシステム(Cube System)」</strong>です。<br>
+    手に入れたアイテムに対して追加のステータスを付与したり、カスタマイズを行ったりすることができます。Legendary以上のアイテムの潜在能力を引き出すためには、キューブによる厳選が不可欠です。</p>
+
+    <h2 id="market">Steamマーケット金策 (リアルマネー稼ぎ)</h2>
+    <p>本作の最大の特徴の一つは、<strong>「アイテムがSteamコミュニティマーケットで自由に取引可能」</strong>という点です。</p>
+    <ul class="content-list">
+      <li>ゲームを起動して放置しているだけで、自動的にドロップしたレアアイテム（Celestial、Divine、Cosmicなどの超高レア）をSteamマーケットに出品できます。</li>
+      <li>売上はSteamウォレットの残高としてチャージされるため、他のSteamゲームの購入資金に充てることも可能です。</li>
+      <li><strong>攻略のコツ：</strong> PCを起動している間は常に本作をタスクバーに常駐させ、インベントリを定期的にチェックして高レアリティ品をマーケットに流すのが最も効率的な金策ルートです。</li>
+    </ul>
+
+  </main>
+</div>
+
+<footer>
+  <p>&copy; 2026 TBH: Task Bar Hero Unofficial Wiki. <br>
+  This site is not affiliated with Nugem Studio or Valve Corporation. All trademarks are property of their respective owners.</p>
+</footer>
+
+</body>
+</html>
