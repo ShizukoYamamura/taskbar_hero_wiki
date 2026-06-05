@@ -193,6 +193,62 @@
         a { color: var(--link); text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; }
         
+/* 掲示板用 CSS */
+        .bbs-container {
+            background: var(--th-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* フォーム全体を縦並び（フレックスカラム）に強制する */
+        .bbs-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* 要素同士の隙間 */
+        }
+        
+        .bbs-form input, .bbs-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+            font-family: inherit;
+            display: block; /* 確実にブロック要素にする */
+            resize: vertical; /* テキストエリアは縦方向のみリサイズ可能に */
+        }
+        
+        .bbs-form button {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.2s;
+            width: 100%;
+            display: block;
+        }
+        
+        .bbs-form button:hover { background: #c0392b; }
+        .bbs-form button:disabled { background: #95a5a6; cursor: not-allowed; }
+
+        .comment-text {
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    word-break: break-all; /* 連続した文字を強制的に折り返す */
+                    white-space: pre-wrap; /* 改行を反映する */
+                    line-height: 1.6;
+                    margin-top: 5px;
+        }
+        
         /* テーブル装飾 */
         table {
             width: 100%;
@@ -272,6 +328,22 @@
             border-top: 5px solid var(--accent);
         }
 
+/* 検索ハイライト用クラス */
+        mark.highlight {
+            background-color: #f1c40f;
+            color: #000;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        /* 今フォーカスされている検索結果 */
+        mark.highlight.active {
+            background-color: #e74c3c;
+            color: #fff;
+            box-shadow: 0 0 8px rgba(231, 76, 60, 0.8);
+            position: relative;
+            z-index: 10;
+        }
+
         @media (max-width: 1000px) {
             .container { flex-direction: column; }
             main, aside { width: 100%; box-sizing: border-box; }
@@ -295,10 +367,11 @@
         <a href="#runes">ルーンツリーデータベース</a>
         <a href="#pets">ペット図鑑</a>
         <a href="#market">Steamマーケット経済学</a>
+        <a href="#bbs-section">💬 雑談掲示板</a>
     </nav>
 
     <div class="container">
-        <main>
+        <main id="wiki-main-content">
             <div style="font-size: 0.9em; margin-bottom: 20px; color: #888;">
                 ホーム > <strong>タスクバーヒーロー攻略Wiki【完全版】</strong>
             </div>
@@ -615,13 +688,29 @@
                 <p>A. 「ドロップペナルティ」に引っかかっている可能性が高いです。キャラクターのレベルに対して、ステージの敵レベルが低すぎる（レベル差が10以上）場合、アイテムドロップ率と経験値がゼロになる仕様です。常に「キャラLv +6」程度の適正ステージを周回させてください。</p>
             </section>
 
+            <section id="bbs-section">
+                <h2>💬 雑談・質問掲示板 (リアルタイム)</h2>
+                <p>プレイヤー同士の交流、攻略の質問、ドロップ報告などに自由に使ってください。</p>
+
+                <div class="bbs-container">
+                    <div class="bbs-form">
+                        <input type="text" id="bbs-name" placeholder="名前（省略した場合は「名無しヒーロー」になります）" maxlength="20">
+                        <textarea id="bbs-message" maxlength="350" rows="3" placeholder="コメントを入力してください..." required></textarea>
+                        <button id="bbs-submit" onclick="postBbsMessage()">書き込む</button>
+                    </div>
+
+                    <div id="bbs-list" class="comment-list">
+                        <p style="text-align:center; color:#888;">📡 データベースに接続中...</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <aside>
             <h3 style="margin-top: 0;">Wiki内検索</h3>
             <div style="margin-bottom: 20px;">
-                <input type="text" placeholder="例: ゴールド稼ぎ、プリースト、ルビー" style="width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text);">
-                <button style="width: 100%; padding: 12px; margin-top: 8px; background: var(--primary); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight:bold; transition: background 0.2s;">検索する</button>
+                <input type="text" id="searchInput" placeholder="例: ルビー、プリースト、金策" style="width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text);" onkeypress="if(event.key==='Enter') searchPage()">
+                <button onclick="searchPage()" style="width: 100%; padding: 12px; margin-top: 8px; background: var(--link); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight:bold; transition: background 0.2s;">検索する</button>
             </div>
 
             <h3>人気攻略メニュー</h3>
@@ -633,6 +722,7 @@
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#pets">▶ ペット泥場所・神話ペット</a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#market">▶ Steam金策・稼げるアイテム</a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#missable">▶ 黒い画面の直し方</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#bbs-section" style="color: var(--accent);">▶ 💬 雑談・質問掲示板</a></li>
             </ul>
 
             <div class="info-box" style="margin-top: 30px; text-align: center; padding: 15px;">
@@ -657,11 +747,39 @@
         </p>
     </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
+        // ==========================================
+        // 0. Supabaseの初期設定（最優先で実行）
+        // ==========================================
+        
+        // ★★★ ここにご自身のプロジェクトURLとAnonキーを貼り付けてください ★★★
+        const SUPABASE_URL = 'https://wmwviljysyhkvlyjmryy.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indtd3ZpbGp5c3loa3ZseWptcnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2Mzk5NTIsImV4cCI6MjA5NjIxNTk1Mn0.9OWixVYjq0cGhhUA2GKBRC7eFONzWABEDzT_gbFwsvk';
+        
+        // グローバル変数の定義
+        let supabaseClient = null;
+        let isSupabaseConfigured = false;
+
+        // URLが初期状態（ダミー）でない、かつ正しい形式かチェック
+        if (!SUPABASE_URL.includes('YOUR_PROJECT_ID') && SUPABASE_URL.startsWith('http')) {
+            try {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                isSupabaseConfigured = true;
+            } catch (e) {
+                console.error("Supabase Initialization Error:", e);
+            }
+        } else {
+            console.warn('Supabase Setup Warning: URLが設定されていないか、形式が正しくありません。');
+        }
+
+        // ==========================================
+        // 1. ダークモード
+        // ==========================================
         function toggleTheme() {
             const doc = document.documentElement;
-            const currentTheme = doc.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
+            if (doc.getAttribute('data-theme') === 'dark') {
                 doc.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
             } else {
@@ -669,15 +787,228 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
-
-        // ページ読み込み時にユーザーの好みを反映
-        window.onload = () => {
+        
+        document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
-        };
+            // 掲示板初期読み込み（HTMLの準備ができた直後に実行）
+            fetchBbsMessages();
+        });
+
+// ==========================================
+        // 2. ページ内検索（順次ジャンプ機能付き）
+        // ==========================================
+        let currentSearchQuery = "";
+        let searchMatches = [];
+        let currentMatchIndex = -1;
+
+        function searchPage() {
+            const input = document.getElementById('searchInput').value.trim();
+            const mainContent = document.getElementById('wiki-main-content') || document.querySelector('main');
+            if (!mainContent) return;
+            
+            // --- 同じキーワードで続けて検索された場合は「次へ」ジャンプ ---
+            if (input !== "" && input === currentSearchQuery && searchMatches.length > 0) {
+                // 今のハイライトからアクティブ状態を外す
+                searchMatches[currentMatchIndex].classList.remove('active');
+                
+                // 次のインデックスへ（最後まで行ったら最初に戻る）
+                currentMatchIndex = (currentMatchIndex + 1) % searchMatches.length;
+                
+                // 次のハイライトをアクティブにしてスクロール
+                searchMatches[currentMatchIndex].classList.add('active');
+                searchMatches[currentMatchIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // --- 新しいキーワードで検索された場合の処理 ---
+            currentSearchQuery = input;
+            searchMatches = [];
+            currentMatchIndex = -1;
+
+            // 以前のハイライトをクリア
+            const marks = mainContent.querySelectorAll('mark.highlight');
+            marks.forEach(mark => {
+                const parent = mark.parentNode;
+                parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                parent.normalize();
+            });
+
+            if (!input) return;
+
+            // テキストを検索してハイライト要素（mark）を挿入する関数
+            function highlightText(node) {
+                if (node.nodeType === 3) {
+                    const text = node.nodeValue;
+                    const index = text.toLowerCase().indexOf(input.toLowerCase());
+                    if (index > -1 && text.trim().length > 0) {
+                        const before = text.substring(0, index);
+                        const matchText = text.substring(index, index + input.length);
+                        const after = text.substring(index + input.length);
+
+                        const mark = document.createElement('mark');
+                        mark.className = 'highlight';
+                        mark.textContent = matchText;
+
+                        // 下から検索しているため、配列の「先頭」に追加していくことで上からの順番を保つ
+                        searchMatches.unshift(mark);
+
+                        const afterNode = document.createTextNode(after);
+                        node.parentNode.insertBefore(mark, node.nextSibling);
+                        node.parentNode.insertBefore(afterNode, mark.nextSibling);
+                        node.nodeValue = before;
+                    }
+                } else if (node.nodeType === 1 && !['MARK','SCRIPT','STYLE'].includes(node.nodeName)) {
+                    // DOM崩れを防ぐため、後ろからループ
+                    for (let i = node.childNodes.length - 1; i >= 0; i--) {
+                        highlightText(node.childNodes[i]);
+                    }
+                }
+            }
+            
+            // 検索実行
+            highlightText(mainContent);
+
+            // 検索結果があった場合、1つ目にジャンプ
+            if (searchMatches.length > 0) {
+                currentMatchIndex = 0;
+                searchMatches[currentMatchIndex].classList.add('active');
+                searchMatches[currentMatchIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('「' + input + '」は見つかりませんでした。');
+            }
+        }
+
+        // ==========================================
+        // 3. Supabase 掲示板ロジック（連投防止機能付き）
+        // ==========================================
+
+        // メッセージの取得・表示
+        async function fetchBbsMessages() {
+            const listEl = document.getElementById('bbs-list');
+            
+            // Supabaseが設定されていない場合の警告表示
+            if (!isSupabaseConfigured) {
+                listEl.innerHTML = `
+                    <div style="background-color: rgba(231, 76, 60, 0.1); border-left: 5px solid #e74c3c; padding: 15px; border-radius: 4px;">
+                        <p style="text-align:center; color:#e74c3c; font-weight:bold; margin:0;">
+                            ⚠️ Supabaseの接続設定が完了していません。
+                        </p>
+                        <p style="text-align:center; color:#888; font-size:0.9em; margin-top:5px;">
+                            HTMLファイル下部の <code>SUPABASE_URL</code> と <code>SUPABASE_ANON_KEY</code> を、<br>ご自身のプロジェクトのキーに書き換えてください。
+                        </p>
+                    </div>`;
+                return;
+            }
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('bbs_messages') 
+                    .select('*')
+                    .order('created_at', { ascending: false })
+                    .limit(50);
+
+                if (error) throw error;
+
+                listEl.innerHTML = '';
+                if (data.length === 0) {
+                    listEl.innerHTML = '<p style="text-align:center; color:#888;">まだ投稿はありません。最初のコメントを書き込んでみましょう！</p>';
+                    return;
+                }
+
+                data.forEach((item, index) => {
+                    const safeName = escapeHTML(item.name || '名無しヒーロー');
+                    const safeMessage = escapeHTML(item.message).replace(/\n/g, '<br>');
+                    const dateObj = new Date(item.created_at);
+                    const formattedDate = `${dateObj.getFullYear()}/${String(dateObj.getMonth()+1).padStart(2,'0')}/${String(dateObj.getDate()).padStart(2,'0')} ${String(dateObj.getHours()).padStart(2,'0')}:${String(dateObj.getMinutes()).padStart(2,'0')}`;
+
+                    const postHtml = `
+                        <div class="comment-item">
+                            <div class="comment-meta">
+                                <div><span class="comment-number">${data.length - index}</span> <strong>${safeName}</strong></div>
+                                <div>${formattedDate}</div>
+                            </div>
+                            <div class="comment-text">${safeMessage}</div>
+                        </div>
+                    `;
+                    listEl.insertAdjacentHTML('beforeend', postHtml);
+                });
+            } catch (err) {
+                console.error('Fetch Error:', err);
+                listEl.innerHTML = '<p style="color:#e74c3c; text-align:center; font-weight:bold;">データの読み込みに失敗しました。テーブル名やRLSの設定を確認してください。</p>';
+            }
+        }
+
+        // メッセージの送信
+        async function postBbsMessage() {
+            if (!isSupabaseConfigured) {
+                alert('Supabaseの設定が完了していないため、書き込みできません。');
+                return;
+            }
+
+            // --- ⏳ 連投防止（クールダウン）設定 ---
+            const COOLDOWN_SECONDS = 60; // 連投禁止の秒数
+            const lastPostTime = localStorage.getItem('lastPostTime');
+            
+            if (lastPostTime) {
+                const now = new Date().getTime();
+                const diffSeconds = Math.floor((now - parseInt(lastPostTime)) / 1000);
+                
+                if (diffSeconds < COOLDOWN_SECONDS) {
+                    const waitTime = COOLDOWN_SECONDS - diffSeconds;
+                    alert(`連続投稿は禁止されています。\nあと ${waitTime} 秒お待ちください。`);
+                    return;
+                }
+            }
+            // ----------------------------------------
+
+            const nameInput = document.getElementById('bbs-name');
+            const messageInput = document.getElementById('bbs-message');
+            const btn = document.getElementById('bbs-submit');
+
+            const nameVal = nameInput.value.trim();
+            const messageVal = messageInput.value.trim();
+
+            if (!messageVal) {
+                alert('コメントを入力してください。');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '送信中...';
+
+            try {
+                const { error } = await supabaseClient
+                    .from('bbs_messages')
+                    .insert([
+                        { name: nameVal || '名無しヒーロー', message: messageVal }
+                    ]);
+
+                if (error) throw error;
+
+                // 成功時に時間を記録
+                localStorage.setItem('lastPostTime', new Date().getTime().toString());
+
+                messageInput.value = '';
+                await fetchBbsMessages();
+            } catch (err) {
+                console.error('Insert Error:', err);
+                alert('送信に失敗しました。RLSの設定やテーブル構成を確認してください。');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '書き込む';
+            }
+        }
+
+        // XSS対策（サニタイズ処理）
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, function(match) {
+                const escapeObj = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+                return escapeObj[match];
+            });
+        }
     </script>
 </body>
 </html>
