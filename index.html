@@ -7,6 +7,24 @@
     <title>タスクバーヒーロー(TBH)攻略Wiki【2026年6月最新】| 宝箱・ルーン・編成・マーケット</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9908835148006630"
         crossorigin="anonymous"></script>
+    <script>
+        // 言語の早期判定（描画前に実行してちらつきを防ぐ）
+        // 優先順位: ユーザーが手動保存した設定 > ブラウザ/OS言語（日本語以外は英語）
+        (function () {
+            try {
+                var saved = localStorage.getItem('lang');
+                var lang = saved;
+                if (lang !== 'ja' && lang !== 'en') {
+                    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+                    lang = nav.indexOf('ja') === 0 ? 'ja' : 'en';
+                }
+                document.documentElement.setAttribute('data-lang', lang);
+                document.documentElement.setAttribute('lang', lang);
+            } catch (e) {
+                document.documentElement.setAttribute('data-lang', 'ja');
+            }
+        })();
+    </script>
     <style>
         /* ==========================================
            CSS Variables (Light & Dark Mode)
@@ -108,6 +126,29 @@
             transform: scale(1.05);
             background: #c0392b;
         }
+
+        /* 言語切替ボタン */
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--link);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.2s, background 0.3s;
+        }
+        .lang-toggle:hover { transform: scale(1.05); background: #1f6391; }
+
+        /* 言語表示制御（既定はJA表示） */
+        .lang-en { display: none; }
+        [data-lang="en"] .lang-en { display: revert; }
+        [data-lang="en"] .lang-ja { display: none; }
 
         nav {
             background-color: var(--secondary);
@@ -555,34 +596,37 @@
 <body>
 
     <div class="update-banner">
-        <strong>2026年6月25日 速報</strong> — <strong>Steamマーケット再開！</strong>（Ver 1.00.21）出品枠4・8時間間隔・上位3グレード制限など最新仕様を反映
+        <span class="lang-ja"><strong>2026年6月25日 速報</strong> — <strong>Steamマーケット再開！</strong>（Ver 1.00.21）出品枠4・8時間間隔・上位3グレード制限など最新仕様を反映</span>
+        <span class="lang-en"><strong>June 25, 2026 News</strong> — <strong>Steam Market Reopened!</strong> (Ver 1.00.21) Updated with the latest rules: 4 listing slots, 8-hour interval, top-3 grade restriction</span>
     </div>
 
     <header>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 ダークモード</button>
-        <h1>タスクバーヒーロー(TBH) 攻略Wiki</h1>
-        <p>〜タスクバー放置RPGの完全攻略データベース【2026年6月最新】〜</p>
+        <button class="lang-toggle" onclick="toggleLang()"><span class="lang-ja">🌐 English</span><span class="lang-en">🌐 日本語</span></button>
+        <button class="theme-toggle" onclick="toggleTheme()"><span class="lang-ja">🌙 ダークモード</span><span class="lang-en">🌙 Dark Mode</span></button>
+        <h1><span class="lang-ja">タスクバーヒーロー(TBH) 攻略Wiki</span><span class="lang-en">TBH: Task Bar Hero Wiki</span></h1>
+        <p><span class="lang-ja">〜タスクバー放置RPGの完全攻略データベース【2026年6月最新】〜</span><span class="lang-en">The complete strategy database for the taskbar idle RPG — Updated June 2026</span></p>
     </header>
 
     <nav>
-        <a href="#overview">概要</a>
-        <a href="#beginner">序盤攻略</a>
-        <a href="#runes">ルーン優先度</a>
-        <a href="#chests">宝箱システム</a>
-        <a href="#offline">オフライン/AFK</a>
-        <a href="#classes">クラス・編成</a>
-        <a href="#skills">スキルビルド</a>
-        <a href="#world">アクト攻略</a>
-        <a href="#cube">キューブ</a>
-        <a href="#pets">ペット</a>
-        <a href="#market">マーケット</a>
-        <a href="#settings">設定・ショートカット</a>
-        <a href="#missable">FAQ</a>
-        <a href="#bbs-section">💬 掲示板</a>
+        <a href="#overview"><span class="lang-ja">概要</span><span class="lang-en">Overview</span></a>
+        <a href="#beginner"><span class="lang-ja">序盤攻略</span><span class="lang-en">Beginner</span></a>
+        <a href="#runes"><span class="lang-ja">ルーン優先度</span><span class="lang-en">Rune Priority</span></a>
+        <a href="#chests"><span class="lang-ja">宝箱システム</span><span class="lang-en">Chests</span></a>
+        <a href="#offline"><span class="lang-ja">オフライン/AFK</span><span class="lang-en">Offline/AFK</span></a>
+        <a href="#classes"><span class="lang-ja">クラス・編成</span><span class="lang-en">Classes</span></a>
+        <a href="#skills"><span class="lang-ja">スキルビルド</span><span class="lang-en">Skill Builds</span></a>
+        <a href="#world"><span class="lang-ja">アクト攻略</span><span class="lang-en">Acts</span></a>
+        <a href="#cube"><span class="lang-ja">キューブ</span><span class="lang-en">Cube</span></a>
+        <a href="#pets"><span class="lang-ja">ペット</span><span class="lang-en">Pets</span></a>
+        <a href="#market"><span class="lang-ja">マーケット</span><span class="lang-en">Market</span></a>
+        <a href="#settings"><span class="lang-ja">設定・ショートカット</span><span class="lang-en">Settings</span></a>
+        <a href="#missable"><span class="lang-ja">FAQ</span><span class="lang-en">FAQ</span></a>
+        <a href="#bbs-section"><span class="lang-ja">💬 掲示板</span><span class="lang-en">💬 Forum</span></a>
     </nav>
 
     <div class="container">
         <main id="wiki-main-content">
+          <div class="lang-ja" id="content-ja">
             <div style="font-size: 0.9em; margin-bottom: 20px; color: #888;">
                 ホーム &gt; <strong>タスクバーヒーロー攻略Wiki【2026年6月最新】</strong>
             </div>
@@ -1213,66 +1257,702 @@
                 <h3>Q. 上位グレード（コズミック等）はいつ売れるようになる？</h3>
                 <p>A. 市場の安定が確認でき次第、段階的に解放され、具体的なスケジュールは別途アナウンスされる予定です。あわせてコンテンツ開発ロードマップや多言語対応の告知も予定されています。</p>
             </section>
+          </div><!-- /.lang-ja -->
+
+          <div class="lang-en" id="content-en">
+            <div style="font-size: 0.9em; margin-bottom: 20px; color: #888;">
+                Home &gt; <strong>TBH: Task Bar Hero Wiki (Updated June 2026)</strong>
+            </div>
+
+            <div class="quick-cards">
+                <div class="quick-card"><a href="#beginner"><div class="icon">🚀</div><div class="label">Getting Started</div><div class="desc">First 10-hour roadmap</div></a></div>
+                <div class="quick-card"><a href="#runes"><div class="icon">◈</div><div class="label">Rune Priority</div><div class="desc">What to unlock first</div></a></div>
+                <div class="quick-card"><a href="#chests"><div class="icon">📦</div><div class="label">Chest Guide</div><div class="desc">Rotation technique</div></a></div>
+                <div class="quick-card"><a href="#classes"><div class="icon">⚔</div><div class="label">Best Party</div><div class="desc">Knight+Priest+Ranger</div></a></div>
+                <div class="quick-card"><a href="#offline"><div class="icon">⏸</div><div class="label">Offline Warning</div><div class="desc">No chests drop!</div></a></div>
+                <div class="quick-card"><a href="#market"><div class="icon">💰</div><div class="label">Steam Market</div><div class="desc">Trading tips</div></a></div>
+            </div>
+
+            <div class="toc">
+                <p>Strategy Wiki — Table of Contents</p>
+                <ul>
+                    <li><a href="#overview">0. Game Overview &amp; Latest Status (June 2026)</a></li>
+                    <li><a href="#beginner">1. Beginner Guide (0–10 Hour Roadmap)</a>
+                        <ul>
+                            <li><a href="#step1">First 1–3 hours: Install to 2-hero party</a></li>
+                            <li><a href="#step2">3–10 hours: 3-hero party &amp; clearing Act 1</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#runes">2. Rune Unlock Priority &amp; Costs</a></li>
+                    <li><a href="#chests">3. Chest System Guide (Most Important)</a>
+                        <ul>
+                            <li><a href="#chest-rotation">Chest rotation technique</a></li>
+                            <li><a href="#chest-levels">Chest level by stage</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#offline">4. Offline vs AFK (background play)</a></li>
+                    <li><a href="#classes">5. All 6 Classes &amp; Best Party Comp</a></li>
+                    <li><a href="#skills">6. Recommended Skill Builds by Class</a></li>
+                    <li><a href="#world">7. Act Guide &amp; XP Efficiency</a></li>
+                    <li><a href="#cube">8. Hero-dric Cube (8 functions)</a></li>
+                    <li><a href="#pets">9. Pet Index &amp; Drop Locations</a></li>
+                    <li><a href="#market">10. Steam Market Guide</a></li>
+                    <li><a href="#settings">11. Settings, Shortcuts &amp; Troubleshooting</a></li>
+                    <li><a href="#missable">12. Frequently Asked Questions (FAQ)</a></li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>0. Game Overview &amp; Latest Status (June 2026)</h2>
+                <p><strong>TBH: Task Bar Hero</strong> is an ultra-compact idle hack-and-slash RPG that fits in your Windows taskbar, released on Steam on May 27, 2026 by Nugem Studio / Tesseract Studio. It became a massive hit right after launch, surpassing tens of thousands of concurrent players, and remains hugely popular as of June 2026.</p>
+
+                <div class="info-box">
+                    <strong>Key Features</strong>
+                    <ul>
+                        <li><strong>Ultra-compact UI:</strong> Runs in the corner of your desktop or in the taskbar. Idle while you work.</li>
+                        <li><strong>3-hero party:</strong> Up to 3 heroes via Runes. 6 classes (3 free + free Priest DLC + paid Hunter/Slayer).</li>
+                        <li><strong>500+ items:</strong> 10 rarity tiers from Common to Cosmic.</li>
+                        <li><strong>3 Acts × 4 difficulties:</strong> Normal, Nightmare, Hell, and Torment.</li>
+                        <li><strong>Steam Market integration:</strong> Trade Legendary+ gear for real money (unlocked at Cube Lv10).</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <strong>🆕 Latest Update: Ver 1.00.21 (June 25, 2026) — Steam Market Reopened!</strong>
+                    <p style="margin:10px 0 0 0; font-weight:normal;">After about two weeks of suspension (since June 8), new listings on the Steam Market have finally reopened following a server migration that stabilized the game. Concurrent players have surpassed 500,000, and the game remains a huge hit. See the <a href="#market">Market chapter</a> for the new rules.</p>
+                </div>
+
+                <h3>Ver 1.00.21 / Market Reopening Highlights</h3>
+                <ul>
+                    <li><strong>Reopening time:</strong> June 25, 2026. Originally scheduled for 16:00 KST, it was <strong>delayed +2 hours to 18:00 KST</strong> due to preparation work (10:00 BST / 02:00 PDT).</li>
+                    <li><strong>Top 3 grades temporarily restricted:</strong> <strong>Cosmic, Divine, and Celestial</strong> cannot be listed for now to ensure market stability. They will be unlocked gradually. <strong>Soulstones can still be listed.</strong></li>
+                    <li><strong>Listing limits:</strong> <strong>4 listing slots</strong> per account, with a new listing interval of <strong>8 hours per slot</strong>. This addresses the load issues caused by previously unlimited listings.</li>
+                    <li><strong>Hotfix:</strong> Patched a security vulnerability, strengthened <strong>hardware bans</strong> for bot users, fixed the Trade Ship window being unmovable while dragging, and fixed a result level-range setting error.</li>
+                    <li><strong>Upcoming:</strong> Once the market stabilizes, a content development roadmap and multilingual announcements are planned.</li>
+                </ul>
+
+                <h3>June Update Timeline So Far</h3>
+                <ul>
+                    <li><strong>June 8:</strong> New Steam Market listings were temporarily suspended due to server overload and rampant cheating.</li>
+                    <li><strong>June 15 (Ver 1.00.12):</strong> Server migration update. Key game data processing moved to the developer's own server, and the minimum acquisition time for normal &amp; stage-boss chests was shortened. Owned chests were moved to the Mailbox.</li>
+                    <li><strong>Ver 1.00.17:</strong> Security fix and blocking of abnormal stage changes.</li>
+                    <li><strong>Ver 1.00.20 (June 23):</strong> Announced the market reopening schedule.</li>
+                    <li><strong>Ver 1.00.21 (June 25):</strong> Market reopening and hotfix.</li>
+                </ul>
+
+                <h3>Other Community Notes</h3>
+                <ul>
+                    <li><strong>Anti-cheat:</strong> If cheating is confirmed twice or more, the account receives a <strong>permanent Steam Market ban</strong>. Gameplay itself can continue after the ban.</li>
+                    <li><strong>Abnormal item cleanup:</strong> Items deemed abnormally generated may be deleted during server-side validation.</li>
+                    <li><strong>Free DLC:</strong> The Priest class must be claimed <strong>free</strong> from the Steam store page.</li>
+                </ul>
+
+                <h3>First Things To Do — Checklist</h3>
+                <ol class="milestone-list">
+                    <li><strong>Install from Steam</strong> (Windows 10/11 64-bit). Broadband is required for market features.</li>
+                    <li><strong>Claim the free Priest DLC</strong> before your first launch.</li>
+                    <li><strong>Turn on Auto-retry</strong> in settings (auto re-attempt on stage failure).</li>
+                    <li>Pick <strong>Knight (safe)</strong> or <strong>Ranger (fast farming)</strong> as your first hero.</li>
+                    <li>Runes unlock at Lv3, Cube at Lv4. Save gold via Alchemy and prioritize Runes.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>1. Beginner Guide (0–10 Hour Roadmap)</h2>
+                <p>The two most important things early in Task Bar Hero are <strong>"unlocking the 3-hero party as soon as possible"</strong> and <strong>"farming chests efficiently."</strong> Below is the optimal route for the first ~10 hours, based on community testing as of June 2026.</p>
+
+                <div class="alert-box">
+                    <strong>Most important:</strong> The third hero slot requires about <strong>150,000 gold</strong> via the "Rune of Command" in the Rune tree. Don't spend gold on synthesis early — save up with Alchemy and unlock it first.
+                </div>
+
+                <h3>First 1–3 Hours: Install to 2-Hero Party</h3>
+                <div class="info-box">
+                    <ol>
+                        <li><strong>Pick your starting class:</strong> Start with Knight (tanky, beginner-friendly) or Ranger (fast farming). Add the Priest as your <strong>second hero</strong> after claiming the free DLC.</li>
+                        <li><strong>Equip skills after learning them:</strong> Spending skill points alone does nothing — set them in a skill slot each time you level up.</li>
+                        <li><strong>Fill every equipment slot:</strong> Just filling weapon, armor, and accessory slots greatly boosts damage and durability.</li>
+                        <li><strong>Unlock the first "Rune of Command":</strong> About 1,300 gold opens the second hero slot. Add the Priest right away.</li>
+                        <li><strong>Run the Cube in Alchemy mode:</strong> Unlocks at Lv4. Convert unwanted gear to gold via Alchemy instead of synthesis — your main early income.</li>
+                        <li><strong>Hit a wall? Use the portal:</strong> The blue portal icon (bottom-right) sends you back to earlier stages to farm gear and levels.</li>
+                    </ol>
+                </div>
+
+                <h3>3–10 Hours: 3-Hero Party &amp; Clearing Act 1</h3>
+                <ul>
+                    <li><strong>Save 150,000G for the third slot:</strong> Completes the staple Knight + Priest + Ranger comp. Progress speeds up dramatically afterward.</li>
+                    <li><strong>Unlock the Rune of Awakening:</strong> +1 skill slot for all heroes. Enables second skills like the Priest's "Blessing of Strength" for a big damage spike.</li>
+                    <li><strong>Rune of the Mainspring for auto-open chests:</strong> Greatly improves idle efficiency. Unlock it early.</li>
+                    <li><strong>Soul Stones:</strong> Needed to challenge Act bosses. Consumed <strong>only on a successful clear</strong> — failed attempts cost nothing.</li>
+                    <li><strong>Clear each Act on Normal before moving up:</strong> Rushing difficulty leads to gear walls. Clear Normal thoroughly before Nightmare.</li>
+                </ul>
+
+                <h3>What NOT To Do Early</h3>
+                <ul>
+                    <li>Burning through White (Common) gear in synthesis early (needed later as crafting material)</li>
+                    <li>Wasting gold on expensive synthesis or decoration before unlocking Runes</li>
+                    <li>Relying only on offline play (no chests drop, so gear stalls)</li>
+                    <li>Farming low-level stages with a 10+ level gap for too long (XP/drop penalty)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>2. Rune Unlock Priority &amp; Costs</h2>
+                <p>The Rune tree is a <strong>permanent upgrade you buy with gold</strong>. Unlocks can't be undone, so how you spend early gold is a key turning point. It unlocks at Lv3.</p>
+
+                <div class="success-box">
+                    <strong>Recommended early order:</strong> Rune of Command (1st) → Rune of Command (2nd, 3rd slot) → Rune of Awakening → Rune of the Mainspring → Rune of Repose → Rune of Opening → Rune of Exploration
+                </div>
+
+                <h3>Rune Tree Directions &amp; Roles</h3>
+                <table>
+                    <thead>
+                        <tr><th>Direction</th><th>Main content</th><th>Priority</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>South (down)</strong></td><td>Rune of Command (party slots), Rune of Awakening (skill slots)</td><td><span class="badge bg-red">Top</span></td></tr>
+                        <tr><td><strong>Northeast</strong></td><td>Rune of the Mainspring (auto-open), Rune of Exploration (drop rate up)</td><td><span class="badge bg-tier">High</span></td></tr>
+                        <tr><td><strong>Northwest</strong></td><td>Rune of Wealth (gold gain up)</td><td>Mid</td></tr>
+                        <tr><td><strong>West</strong></td><td>XP / Cube XP up</td><td>Mid</td></tr>
+                        <tr><td><strong>East</strong></td><td>Rune of Storage (stash expansion)</td><td>Mid–High</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Key Rune Effects &amp; Costs</h4>
+                <table>
+                    <thead>
+                        <tr><th>Priority</th><th>Rune Name</th><th>Effect</th><th>Approx. cost</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>Rune of Command</strong></td><td>+1 hero slot (2nd hero)</td><td>~1,300 G</td></tr>
+                        <tr><td>2</td><td><strong>Rune of Command</strong> (2nd)</td><td>+1 hero slot (3rd hero)</td><td>~150,000 G total</td></tr>
+                        <tr><td>3</td><td><strong>Rune of Awakening</strong></td><td>+1 skill slot for all heroes</td><td>~50,000 G</td></tr>
+                        <tr><td>4</td><td><strong>Rune of the Mainspring</strong></td><td>Auto-open normal chests</td><td>~85,000 G</td></tr>
+                        <tr><td>5</td><td><strong>Rune of Repose</strong></td><td>Unlocks offline rewards (gold/XP)</td><td>—</td></tr>
+                        <tr><td>6</td><td><strong>Rune of Opening</strong></td><td>Right-click to bulk-open chests</td><td>—</td></tr>
+                        <tr><td>7</td><td><strong>Rune of Exploration</strong></td><td>Chest drop rate up, boss gold up</td><td>—</td></tr>
+                        <tr><td>—</td><td><strong>Rune of Storage</strong></td><td>+1 stash page</td><td>~300,000 G</td></tr>
+                    </tbody>
+                </table>
+                <p>*Costs are cumulative estimates on the Rune tree and may change with patches.</p>
+            </section>
+
+            <section>
+                <h2>3. Chest System Guide (Most Important)</h2>
+                <p>Chests are the <strong>biggest source</strong> of gear and materials. Your progression speed in TBH is largely determined by how you manage chests — one of the most discussed strategy topics in the community even as of June 2026.</p>
+
+                <div class="alert-box">
+                    <strong>Note:</strong> While offline (Steam closed), <strong>no chests drop at all</strong>. Chests only drop during AFK play with the game running in the background.
+                </div>
+
+                <h3>Chest Basics</h3>
+                <ul>
+                    <li><strong>Each stage has a fixed chest level:</strong> The gear inside scales to the stage's enemy level.</li>
+                    <li><strong>Cooldown (CD):</strong> After a chest of a given level drops, it enters a CD (~6 min for white, ~9 min for blue). Farming one stage too long lowers efficiency.</li>
+                    <li><strong>Inventory cap:</strong> Chests pile up in your inventory. Once full, drops stop — managing when to open is key.</li>
+                    <li><strong>Act bosses always drop chests:</strong> If you don't get one, check Mailbox, wait 10 seconds, then hit refresh.</li>
+                </ul>
+
+                <h3 id="chest-rotation">Chest Rotation Technique (Max Efficiency)</h3>
+                <div class="info-box">
+                    <ol>
+                        <li><strong>Stockpile white chests with auto-open OFF</strong> → turn auto-open ON to process them all once inventory fills.</li>
+                        <li><strong>For blue chests, rotate stages:</strong> Alternate between 2–3 stages of different chest levels to avoid individual CDs. Some reports show ~3× more drops.</li>
+                        <li><strong>Unlock auto-open via the Rune of the Mainspring</strong> so drops keep flowing while idle.</li>
+                        <li><strong>When drops stall,</strong> switch to a different level tier of stage.</li>
+                    </ol>
+                </div>
+
+                <h3 id="chest-levels">Chest Level by Stage (Main Stages)</h3>
+                <table>
+                    <thead>
+                        <tr><th>Stage</th><th>Difficulty</th><th>Chest Lv</th><th>Use</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1-1</td><td>Normal</td><td>Lv1</td><td>Early / white chest stockpile</td></tr>
+                        <tr><td>1-4</td><td>Normal</td><td>Lv5</td><td>Early farming</td></tr>
+                        <tr><td>1-8</td><td>Normal</td><td>Lv10</td><td>Late Act 1</td></tr>
+                        <tr><td>1-9</td><td>Normal</td><td>—</td><td>XP efficiency / Soul Stone farming</td></tr>
+                        <tr><td>2-3</td><td>Normal</td><td>Lv15</td><td>Entering mid-game</td></tr>
+                        <tr><td>2-8</td><td>Normal</td><td>Lv20</td><td>Hard spot needing fire resist</td></tr>
+                        <tr><td>3-6</td><td>Normal</td><td>—</td><td>Mid-game wall (fire damage counters needed)</td></tr>
+                        <tr><td>3-8</td><td>Normal</td><td>Lv30</td><td>Late Act 3</td></tr>
+                        <tr><td>1-9</td><td>Nightmare</td><td>Lv40</td><td>Entering high difficulty</td></tr>
+                        <tr><td>3-5</td><td>Nightmare</td><td>Lv50</td><td>Mid–late</td></tr>
+                        <tr><td>2-5</td><td>Hell</td><td>Lv65</td><td>Endgame gear</td></tr>
+                        <tr><td>1-3</td><td>Torment</td><td>Lv80</td><td>Endgame content</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Chest Troubleshooting</h3>
+                <ul>
+                    <li>Try Options → <strong>"Resolve Inventory Issue"</strong> button</li>
+                    <li>Check in-game Mail (top-right mail icon) → wait 10s → refresh</li>
+                    <li>If chests are stuck in the Steam inventory, claim them from the Mailbox</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>4. Offline vs AFK (Background Play)</h2>
+                <p>This is the biggest trap for players coming from other idle RPGs. In TBH, <strong>"offline with the game closed" and "AFK with the game running" are completely different</strong>.</p>
+
+                <table>
+                    <thead>
+                        <tr><th>State</th><th>Gold / XP</th><th>Chest drops</th><th>Recommendation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>AFK (game running)</strong></td><td>◎ Normal</td><td>◎ Normal</td><td><span class="badge bg-rank1">Best</span></td></tr>
+                        <tr><td><strong>Offline (Steam closed)</strong></td><td>△ Partial after Rune of Repose</td><td>✕ Zero</td><td>Supplementary only</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <strong>Efficient Play Style</strong>
+                    <ul>
+                        <li>Leave the game running while working on your PC during the day (even 20–30 min active sessions help)</li>
+                        <li>Turn on auto-open via the Rune of the Mainspring, and set Auto-retry</li>
+                        <li>Use offline rewards only for long breaks like sleep (note: gear doesn't progress)</li>
+                        <li>Relying only on offline will greatly slow gear and material progression</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>5. All 6 Classes &amp; Best Party Comp</h2>
+                <p>Of the 6 classes, Knight, Ranger, and Sorcerer are free. Priest is free DLC, and Hunter/Slayer are paid DLC (about $3.99 each). <strong>Unlocking a class does not add a hero slot</strong> — slots only increase via the "Rune of Command."</p>
+
+                <h3>Recommended Party Comp (Early–Mid Staple)</h3>
+                <div class="success-box">
+                    <strong>Knight (frontline tank) + Priest (heal/buff) + Ranger (backline DPS)</strong><br>
+                    The Knight soaks hits, the Priest heals and buffs party damage, and the Ranger deals fast DPS. The best balance of survivability and damage. On dense stages, swapping the Ranger for a Sorcerer (AoE) also works.
+                </div>
+
+                <table>
+                    <thead>
+                        <tr><th>Class</th><th>Role</th><th>Access</th><th>Early rating</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Knight</strong></td><td>Frontline tank</td><td>Free</td><td><span class="badge bg-rank1">S</span> Best for beginners</td></tr>
+                        <tr><td><strong>Priest</strong></td><td>Heal / buff / sub-tank</td><td>Free DLC</td><td><span class="badge bg-rank1">S</span> Essential</td></tr>
+                        <tr><td><strong>Ranger</strong></td><td>Ranged DPS / farming</td><td>Free</td><td><span class="badge bg-rank1">S</span> Best farmer</td></tr>
+                        <tr><td><strong>Sorcerer</strong></td><td>AoE magic DPS</td><td>Free</td><td><span class="badge bg-rank2">A</span> Clearing mobs</td></tr>
+                        <tr><td><strong>Hunter</strong></td><td>Boss-focused DoT DPS</td><td>Paid DLC</td><td><span class="badge bg-rank2">A</span> Boss fights</td></tr>
+                        <tr><td><strong>Slayer</strong></td><td>High-burst berserker</td><td>Paid DLC</td><td><span class="badge bg-rank3">B</span> Fragile at high difficulty</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Knight — Steadfast Main Tank</h3>
+                <p>A melee tank that holds the front with taunts and self-buffs. The safest first pick for beginners.</p>
+                <ul>
+                    <li><strong>Pros:</strong> High armor and threat generation. Shield Charge pulls aggro; Iron Stance heavily cuts incoming damage.</li>
+                    <li><strong>Cons:</strong> A Knight + Priest double-tank comp slows farming speed.</li>
+                    <li><strong>Gear priority:</strong> Armor, block rate, damage reduction, all-element resistance.</li>
+                </ul>
+
+                <h3>Priest — Heal &amp; Buff Core</h3>
+                <p>The most important class, available as free DLC. At high difficulty, progress is nearly impossible without heals and buffs.</p>
+                <ul>
+                    <li><strong>Pros:</strong> Sustained healing, Blessing of Strength (+90% party attack), Sanctuary (AoE heal/invuln). Can sub-tank if built defensively.</li>
+                    <li><strong>Cons:</strong> Low personal damage. Oddly fights in melee, so it needs HP.</li>
+                    <li><strong>Gear priority:</strong> HP, armor, cast speed, cooldown reduction.</li>
+                </ul>
+
+                <h3>Ranger — King of Farming</h3>
+                <p>A ranged DPS built around attack speed and piercing. Top-tier farming efficiency in the early-to-mid game.</p>
+                <ul>
+                    <li><strong>Pros:</strong> High-rate damage via Rapid Shot and Piercing Arrow. Deals damage safely from the backline.</li>
+                    <li><strong>Cons:</strong> Late game enemy armor rises, making penetration/armor-pierce stats essential.</li>
+                    <li><strong>Gear priority:</strong> Attack speed &gt; physical damage &gt; penetration &gt; crit.</li>
+                </ul>
+
+                <h3>Sorcerer — AoE Wipe Mage</h3>
+                <ul>
+                    <li><strong>Pros:</strong> Clears dense mob stages fast with AoE like Fireball/Meteor Strike. Add it when you want XP efficiency.</li>
+                    <li><strong>Cons:</strong> Weak single-target DPS on bosses. Lowest HP/armor — melts if it pulls aggro.</li>
+                    <li><strong>Gear priority:</strong> Magic power, cast speed, cooldown reduction, all-element damage.</li>
+                </ul>
+
+                <h3>Hunter — Boss-Focused DoT DPS</h3>
+                <ul>
+                    <li><strong>Pros:</strong> Whittles boss HP efficiently with poison/bleed DoT. Strong synergy between Explosion Bolt and Quick Loader.</li>
+                    <li><strong>Cons:</strong> Weak clear on mob-heavy stages. Requires paid DLC.</li>
+                    <li><strong>Gear priority:</strong> Crit rate, crit damage, attack speed, fire damage.</li>
+                </ul>
+
+                <h3>Slayer — Double-Edged Damage Dealer</h3>
+                <ul>
+                    <li><strong>Pros:</strong> Theoretically the highest damage of any class while Bloodlust is active.</li>
+                    <li><strong>Cons:</strong> Paper-thin defense — at high difficulty (Hell/Torment) the Priest's heals can't keep up, leading to quick deaths.</li>
+                </ul>
+
+                <h3>Gear Policy at High Difficulty</h3>
+                <p>A balanced loadout is fine up to Normal, but <strong>specialization is mandatory at Nightmare and above</strong>. DPS should go all-in on attack speed/crit; tanks on armor/HP/damage reduction. Half-measure stat spreads cause walls.</p>
+            </section>
+
+            <section>
+                <h2>6. Recommended Skill Builds by Class</h2>
+                <p>Skill points <strong>can be refunded (reset)</strong>, but having a plan early makes respeccing easier later. Always <strong>set learned skills into a slot</strong>.</p>
+
+                <h3>Ranger</h3>
+                <ul>
+                    <li><strong>Lv1+:</strong> Make Rapid Shot your main. At first prioritize <strong>flat damage</strong> over attack speed (% bonuses are weak when base damage is low).</li>
+                    <li><strong>Mid:</strong> Take Piercing Arrow. Prefer single-target focused skills (multi-target splits your damage).</li>
+                    <li><strong>After 2nd skill slot:</strong> Reset and pivot to Rain of Arrows, then stack crit rate.</li>
+                </ul>
+
+                <h3>Knight</h3>
+                <ul>
+                    <li><strong>First:</strong> 8 points into Health Boost → 1 into an active skill → 1 into Attack Damage.</li>
+                    <li><strong>Lv10+:</strong> Prioritize Armor Boost. The more armor the Knight has, the longer the whole party survives, which lets the Ranger work.</li>
+                </ul>
+
+                <h3>Priest</h3>
+                <ul>
+                    <li><strong>First:</strong> 1 point into Heal → invest in HP (the Priest takes melee hits).</li>
+                    <li><strong>After 2nd skill slot:</strong> Prioritize Blessing of Strength. +90% party attack is an exceptional buff.</li>
+                </ul>
+
+                <h3>Sorcerer</h3>
+                <ul>
+                    <li>Center your build on Fireball-line AoE for clearing mobs. Keep a single-target skill for boss fights.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>7. Act Guide &amp; XP Efficiency</h2>
+                <p>The core XP rule is <strong>"killing enemies around your character level +6 is most efficient."</strong> A level gap of 10+ triggers an XP/drop penalty.</p>
+
+                <h3>The 4 Difficulties</h3>
+                <table>
+                    <thead>
+                        <tr><th>Difficulty</th><th>Name</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Normal</td><td>Normal</td><td>Clear first. Clear each Act on Normal before moving up</td></tr>
+                        <tr><td>Nightmare</td><td>Nightmare</td><td>Enemy stats rise. Elemental counters needed</td></tr>
+                        <tr><td>Hell</td><td>Hell</td><td>Major stat inflation. Gear specialization required</td></tr>
+                        <tr><td>Torment</td><td>Torment</td><td>Endgame. Highest-level chests and rare gear</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Act Bosses &amp; Strategy Points</h4>
+                <ul>
+                    <li><strong>Act 1: Forest of Oblivion (recommended Lv 1–15)</strong>
+                        <ul>
+                            <li><strong>Hard spot:</strong> 1-8 (swarms of poison spiders; tough if healing can't keep up)</li>
+                            <li><strong>Boss "Orc Chieftain":</strong> Physical attacks only. Manageable with the Knight's shield</li>
+                            <li><strong>Recommended farming:</strong> 1-4 (early), 1-9 (XP / Soul Stones)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Act 2: Scorched Wastes (recommended Lv 15–35)</strong>
+                        <ul>
+                            <li><strong>Hard spot:</strong> 2-8 (Fire Spirits; a wipe loop without fire resist)</li>
+                            <li><strong>Counter:</strong> Socket Ruby into armor for fire resistance</li>
+                            <li><strong>Recommended farming:</strong> 2-4, 2-9 (mid-game gold/XP hotspot)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Act 3: Abyss of the Void (recommended Lv 35–50+)</strong>
+                        <ul>
+                            <li><strong>Hard spot:</strong> 3-5 onward (enemies with physical/magic-immune barriers; balanced comp needed)</li>
+                            <li><strong>3-6 "Burning Canyon":</strong> The biggest mid-game wall. Beat it with fire resist (Minor Ruby accessory) + Knight + Priest + Ranger</li>
+                            <li><strong>Boss "Void Reaper":</strong> Has an instant-kill attack. The pet "Ghost" (death dodge) helps</li>
+                            <li><strong>Recommended farming:</strong> 3-9 (gateway to endgame)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Efficient Farming by Level Band</h4>
+                <table>
+                    <thead>
+                        <tr><th>Char Lv</th><th>Farm stage</th><th>Goal</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Lv 1–10</td><td>Normal 1-4 / 1-9</td><td>Keep clears under 200s. Update all gear slots</td></tr>
+                        <tr><td>Lv 11–20</td><td>Normal 2-4</td><td>Transition to Rare gear. Prep Ruby decorations</td></tr>
+                        <tr><td>Lv 21–30</td><td>Normal 2-9</td><td>Legendary gear starts dropping</td></tr>
+                        <tr><td>Lv 31–40</td><td>Normal 3-4</td><td>Cube-crafted weapons become essential</td></tr>
+                        <tr><td>Lv 41–50+</td><td>Normal 3-9 / Nightmare+</td><td>Start hunting Immortal/Arcana rolls</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>8. Hero-dric Cube (8 Functions)</h2>
+                <p>The Cube is a core system unlocked at Lv4. It defaults to Synthesis mode, but early on the standard play is to <strong>switch to Alchemy to earn gold</strong>. Raising the Cube level unlocks 8 functions in order.</p>
+
+                <h3>The Cube's 8 Functions</h3>
+                <table>
+                    <thead>
+                        <tr><th>Function</th><th>Use</th><th>Unlock timing</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Alchemy</strong></td><td>Unwanted items → gold</td><td>Top early priority</td></tr>
+                        <tr><td><strong>Synthesis</strong></td><td>9 same-rarity → higher rarity</td><td>Mid-game on</td></tr>
+                        <tr><td><strong>Crafting</strong></td><td>Make gear from materials (slot-targetable)</td><td>Unlocks as Cube levels up</td></tr>
+                        <tr><td><strong>Decoration</strong></td><td>Socket gems into Rare+ gear</td><td>From Rare gear</td></tr>
+                        <tr><td><strong>Engraving</strong></td><td>Engrave Immortal gear</td><td>From Immortal gear</td></tr>
+                        <tr><td><strong>Inscription</strong></td><td>Inscribe Arcana gear</td><td>From Arcana gear</td></tr>
+                        <tr><td><strong>Removal</strong></td><td>Extract gems from sockets (unequip first)</td><td>Required before market listing</td></tr>
+                        <tr><td><strong>Market link</strong></td><td>List on the Steam Market</td><td>Cube Lv10</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Synthesis Rules</h3>
+                <p>Synthesizing <strong>9 items</strong> of the same rarity either upgrades to the next rarity or produces another item of the same rarity. A low synthesis level can downgrade on failure, so raise the Cube level before synthesizing high-level gear.</p>
+                <ul>
+                    <li>9 Common → Uncommon</li>
+                    <li>9 Uncommon → Rare</li>
+                    <li>9 Rare → chance for Legendary</li>
+                    <li>9 Legendary → chance for Immortal</li>
+                </ul>
+                <p>*Lock items first with <code>Alt + Left Click</code>. Alchemy auto-fill also prevents accidental loss.</p>
+
+                <h3>Crafting vs Alchemy</h3>
+                <ul>
+                    <li><strong>Early:</strong> Convert to gold via Alchemy → fund Rune unlocks</li>
+                    <li><strong>Mid:</strong> Craft slot-targeted gear using Red Powder (attack), Blue Powder (magic), Green Powder (defense)</li>
+                    <li><strong>Preserve White (Common) materials:</strong> Don't burn them early — needed for later crafting/synthesis</li>
+                </ul>
+
+                <h3>Rarity &amp; Socket Tiers</h3>
+                <table>
+                    <thead>
+                        <tr><th>Rarity</th><th>Socket</th><th>Use</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="rarity-common">Common</td><td>—</td><td>Alchemy / synthesis material</td></tr>
+                        <tr><td class="rarity-uncommon">Uncommon</td><td>—</td><td>Early gear updates</td></tr>
+                        <tr><td class="rarity-rare">Rare</td><td>Decoration</td><td>Unlocks gem sockets</td></tr>
+                        <tr><td class="rarity-legendary">Legendary</td><td>—</td><td>Build core. Tradable on the market</td></tr>
+                        <tr><td class="rarity-immortal">Immortal</td><td>Engraving</td><td>Endgame gear</td></tr>
+                        <tr><td class="rarity-arcana">Arcana</td><td>Inscription</td><td>High market demand</td></tr>
+                        <tr><td>Beyond / Celestial / Divine / Cosmic</td><td>—</td><td>Endgame chase rarities</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Gem (Decoration) Effects</h4>
+                <table>
+                    <thead>
+                        <tr><th>Gem</th><th>Weapon</th><th>Armor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Ruby</strong></td><td>Adds fire damage</td><td>Fire resist (essential for 2-8 / 3-6)</td></tr>
+                        <tr><td><strong>Sapphire</strong></td><td>Cold damage (slow)</td><td>Cold resist</td></tr>
+                        <tr><td><strong>Topaz</strong></td><td>Lightning damage</td><td>Lightning resist</td></tr>
+                        <tr><td><strong>Emerald</strong></td><td>Increases crit damage</td><td>Poison resist</td></tr>
+                        <tr><td><strong>Diamond</strong></td><td>Increases all-element damage</td><td>All-element resist</td></tr>
+                    </tbody>
+                </table>
+                <p>*Gems can be removed, but a socketed gem is destroyed in the process. Use Removal before listing on the market.</p>
+            </section>
+
+            <section>
+                <h2>9. Pet Index &amp; Drop Locations</h2>
+                <p>Pets grant party-wide passive effects just by being owned or equipped. Drop rates are very low (about 0.01%–0.05%), requiring long idle farming. The Supporter Pack DLC also includes pet-related bonuses.</p>
+
+                <table>
+                    <thead>
+                        <tr><th>Pet</th><th>Main drop location</th><th>Effect / notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Bat</strong></td><td>Around Act 1-8</td><td>Move speed +10%, HP leech 2%. Early lifeline</td></tr>
+                        <tr><td><strong>Giant Fly</strong></td><td>Around Act 2-4</td><td>Attack speed +15%. Great with Ranger/Hunter</td></tr>
+                        <tr><td><strong>Fire Spirit</strong></td><td>Around Act 2-8</td><td>Fire damage +20%, fire resist +30%</td></tr>
+                        <tr><td><strong>Blue Golem</strong></td><td>Early Act 3</td><td>Armor +40%, max HP +20%. Best on the Knight</td></tr>
+                        <tr><td><strong>Hell Golem</strong></td><td>Hell difficulty+</td><td>All-element resist +50%, reflects 30% damage</td></tr>
+                        <tr><td><strong>Ghost</strong></td><td>Act 3-9, etc.</td><td>Dodge +20%, <strong>death dodge (60s CD)</strong>. Counters the Act 3 boss</td></tr>
+                        <tr><td><strong>Dragon</strong></td><td>Torment only</td><td>All stats +50%, screen-wide breath damage</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>10. Steam Market Guide</h2>
+                <p>A major feature of this game is buying/selling items via the Steam Community Market. Rare gear you pick up while idle turns into Steam Wallet funds. Note that <strong>Steam Guard (mobile authentication) is required</strong>.</p>
+
+                <div class="success-box">
+                    <strong>[Updated June 25, 2026] Steam Market Reopened (Ver 1.00.21)</strong><br>
+                    New listings, suspended since June 8, have reopened. However, the following <strong>new listing rules</strong> apply for server stability.
+                </div>
+
+                <h3>New Post-Reopening Rules (Most Important)</h3>
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>New rule</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Listing slots</strong></td><td>Up to <strong>4 slots</strong> per account</td></tr>
+                        <tr><td><strong>New listing interval</strong></td><td><strong>8 hours per slot</strong></td></tr>
+                        <tr><td><strong>Restricted grades</strong></td><td><span class="rarity-arcana">Cosmic, Divine, Celestial</span> can't be listed for now (gradual unlock planned)</td></tr>
+                        <tr><td><strong>Soulstones</strong></td><td>Still listable</td></tr>
+                        <tr><td><strong>Market requirement</strong></td><td>Cube Lv10+</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="alert-box">
+                    <strong>Mind the 4-slot, 8-hour constraint.</strong> Check rarity, sockets, unique stats, and build value before deciding which item deserves a slot. Since the top 3 grades (Cosmic, etc.) can't be listed now, Legendary–Arcana gear is the main trade for the time being.
+                </div>
+
+                <h3>Market Basics</h3>
+                <ul>
+                    <li><strong>In-game gold:</strong> Cube → Alchemy</li>
+                    <li><strong>Real-money trading:</strong> Via the Trade Ship icon (SteamTradeShip), top-left. Unlocks at Cube Lv10</li>
+                    <li><strong>How to list:</strong> Click the Trade Ship icon → drag items to your Steam inventory → list on the Steam Market</li>
+                    <li><strong>Receiving purchases:</strong> Bought items arrive in the <strong>in-game Mail</strong>. Wait 10s, then hit refresh to claim</li>
+                    <li><strong>Before listing:</strong> If gems are socketed, remove them with the Cube's Removal function</li>
+                </ul>
+
+                <h3>Market Tips</h3>
+                <ul>
+                    <li><strong>Use your 4 slots wisely:</strong> With 4 slots / 8-hour intervals, list your most valuable rolls first</li>
+                    <li><strong>When the gear you want won't drop:</strong> Sell spare Legendaries and buy the piece you need</li>
+                    <li><strong>Pricing:</strong> Check recent sale prices before setting a price. Watch for digit errors (no cancellation)</li>
+                    <li><strong>High-demand items:</strong> Sorcerer staves with cooldown reduction / cast speed, Knight HP% heavy armor, Ruby-socketed fire-resist armor, Legendary–Arcana gear with unique stats</li>
+                    <li><strong>Early boost:</strong> Buy a cheap Legendary weapon on the market → convert to gold via Alchemy → accelerate Rune unlocks (a.k.a. "paid boost")</li>
+                </ul>
+                <p>*Market trades are <strong>absolutely non-cancellable</strong>. Double-check prices when listing. Also, confirmed cheating twice or more results in a <strong>permanent market ban</strong> (gameplay itself can continue).</p>
+            </section>
+
+            <section>
+                <h2>11. Settings, Shortcuts &amp; Troubleshooting</h2>
+
+                <h3>Official Shortcut Keys</h3>
+                <table>
+                    <thead>
+                        <tr><th>Key</th><th>Effect</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><kbd>Shift</kbd> + <kbd>F12</kbd></td><td>Reset window position (try this first if it vanishes off-screen)</td></tr>
+                        <tr><td><kbd>Shift</kbd> + <kbd>F11</kbd></td><td>Reset window scale (if it shrinks after a DPI change)</td></tr>
+                        <tr><td><kbd>Alt</kbd> + <kbd>Left Click</kbd></td><td>Lock an item (prevents accidental Alchemy/synthesis loss)</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Recommended Game Settings</h3>
+                <ul>
+                    <li><strong>Auto-retry:</strong> ON (auto re-attempt on stage failure)</li>
+                    <li><strong>Auto-open chests:</strong> ON after unlocking the Rune of the Mainspring</li>
+                    <li><strong>Multi-monitor:</strong> After moving monitors, try Shift+F12 then Shift+F11</li>
+                </ul>
+
+                <h3>Common Issues &amp; Fixes</h3>
+                <h4>Black screen / game won't progress</h4>
+                <p>Steam Library → right-click TBH → Manage → Browse local files → right-click <code>TaskBarHero.exe</code> → Properties → Compatibility tab → check <strong>"Disable fullscreen optimizations."</strong> Then in High DPI settings, select <strong>"Application."</strong></p>
+
+                <h4>Window went off-screen</h4>
+                <p>Press <kbd>Shift</kbd> + <kbd>F12</kbd> to reset position. If that fails, <kbd>Shift</kbd> + <kbd>F11</kbd> resets scale too.</p>
+
+                <h4>Chests won't drop / won't open</h4>
+                <p>(1) Level-gap penalty (check you're on a stage near char Lv+6). (2) Check Mail → wait 10s → refresh. (3) Options → "Resolve Inventory Issue." (4) Check that inventory isn't full.</p>
+
+                <h4>Skills don't work</h4>
+                <p>After learning a skill, did you <strong>set it into a slot</strong>? Learning alone doesn't activate it.</p>
+
+                <h4>Can't find gear bought on the market</h4>
+                <p>Check the in-game Mail (top-right mail icon). Wait 10s, then hit refresh.</p>
+            </section>
+
+            <section>
+                <h2>12. Frequently Asked Questions (FAQ)</h2>
+
+                <h3>Irreversible Actions</h3>
+                <ul style="color: var(--accent); font-weight: bold;">
+                    <li>Accidental loss via Cube Alchemy (gear lost from forgetting to lock)</li>
+                    <li>Gems consumed by Decoration (not returned even if removed)</li>
+                    <li>Steam Market trades (non-cancellable)</li>
+                    <li>Rune unlocks (gold can't be respec'd)</li>
+                </ul>
+                <p>Conversely, <strong>skill points can be reset for free anytime via the Refund button</strong>. DLC class appearance can also be toggled on/off in Steam properties.</p>
+
+                <h3>Q. Should I start with Knight or Ranger?</h3>
+                <p>A. Knight is safe and tanky; Ranger is fast at farming. Either works — but adding the Priest as your second hero is the staple.</p>
+
+                <h3>Q. I bought Hunter but can't field 3 heroes</h3>
+                <p>A. DLC only unlocks a class; it doesn't add a slot. Increase slots via the "Rune of Command" and place the Hunter in the Formation screen.</p>
+
+                <h3>Q. Are Soul Stones consumed on failure?</h3>
+                <p>A. No. They're consumed <strong>only on a successful</strong> Act boss clear. Retry as many times as you like.</p>
+
+                <h3>Q. Do chests drop during offline play?</h3>
+                <p>A. No. With Steam closed, chest drops are zero. Only gold/XP are partly gained after unlocking the Rune of Repose.</p>
+
+                <h3>Q. Should I synthesize White gear early?</h3>
+                <p>A. Generally no. If you need gold, sell via Alchemy and save White materials for later crafting.</p>
+
+                <h3>Q. Is the Priest DLC really free?</h3>
+                <p>A. Yes. Get "TBH: Task Bar Hero — Priest (Class)" for $0.00 from the Steam DLC tab. Add it before your first playthrough.</p>
+
+                <h3>Q. My Lv10 gear became Lv5 after synthesis</h3>
+                <p>A. A low Cube synthesis level downgrades on failure. Raise the Cube level before synthesizing high-level gear.</p>
+
+                <h3>Q. Is the market usable now? (as of June 25, 2026)</h3>
+                <p>A. Yes. New listings, suspended since June 8, reopened in Ver 1.00.21 (June 25, 18:00 KST). However, there's a <strong>4-slot / 8-hour-per-slot limit</strong>, and the <strong>top 3 grades (Cosmic, Divine, Celestial) can't be listed for now</strong> (Soulstones can). Requires Cube Lv10+.</p>
+
+                <h3>Q. When will top grades (Cosmic, etc.) become sellable?</h3>
+                <p>A. They'll unlock gradually once the market stabilizes, with a specific schedule announced separately. A content roadmap and multilingual support are also planned.</p>
+            </section>
+          </div><!-- /.lang-en -->
 
             <section id="bbs-section">
-                <h2>💬 雑談・質問掲示板 (リアルタイム)</h2>
-                <p>プレイヤー同士の交流、攻略の質問、ドロップ報告などに自由に使ってください。</p>
+                <h2><span class="lang-ja">💬 雑談・質問掲示板 (リアルタイム)</span><span class="lang-en">💬 Chat &amp; Q&amp;A Forum (Real-time)</span></h2>
+                <p><span class="lang-ja">プレイヤー同士の交流、攻略の質問、ドロップ報告などに自由に使ってください。</span><span class="lang-en">Feel free to use this for chatting with other players, strategy questions, drop reports, and more.</span></p>
 
                 <div class="bbs-container">
                     <div class="bbs-form">
-                        <input type="text" id="bbs-name" placeholder="名前（省略した場合は「名無しヒーロー」になります）" maxlength="20">
-                        <textarea id="bbs-message" maxlength="350" rows="3" placeholder="コメントを入力してください..." required></textarea>
-                        <button id="bbs-submit" onclick="postBbsMessage()">書き込む</button>
+                        <input type="text" id="bbs-name" maxlength="20">
+                        <textarea id="bbs-message" maxlength="350" rows="3" required></textarea>
+                        <button id="bbs-submit" onclick="postBbsMessage()"><span class="lang-ja">書き込む</span><span class="lang-en">Post</span></button>
                     </div>
 
                     <div id="bbs-list" class="comment-list">
-                        <p style="text-align:center; color:#888;">📡 データベースに接続中...</p>
+                        <p style="text-align:center; color:#888;">📡 <span class="lang-ja">データベースに接続中...</span><span class="lang-en">Connecting to the database...</span></p>
                     </div>
                 </div>
             </section>
         </main>
 
         <aside>
-            <h3 style="margin-top: 0;">Wiki内検索</h3>
+            <h3 style="margin-top: 0;"><span class="lang-ja">Wiki内検索</span><span class="lang-en">Search the Wiki</span></h3>
             <div style="margin-bottom: 20px;">
-                <input type="text" id="searchInput" placeholder="例: ルビー、プリースト、金策" style="width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text);" onkeypress="if(event.key==='Enter') searchPage()">
-                <button onclick="searchPage()" style="width: 100%; padding: 12px; margin-top: 8px; background: var(--link); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight:bold; transition: background 0.2s;">検索する</button>
+                <input type="text" id="searchInput" style="width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text);" onkeypress="if(event.key==='Enter') searchPage()">
+                <button onclick="searchPage()" style="width: 100%; padding: 12px; margin-top: 8px; background: var(--link); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight:bold; transition: background 0.2s;"><span class="lang-ja">検索する</span><span class="lang-en">Search</span></button>
             </div>
 
-            <h3>人気攻略メニュー</h3>
+            <h3><span class="lang-ja">人気攻略メニュー</span><span class="lang-en">Popular Guides</span></h3>
             <ul style="list-style: none; padding-left: 0; line-height: 2.2;">
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#chests">▶ 宝箱ローテーション術</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#runes">▶ ルーン解放優先度</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#classes">▶ 最強パーティ編成</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#skills">▶ スキルビルド推奨</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#offline">▶ オフライン注意点</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#world">▶ アクト別攻略</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#market">▶ Steamマーケット</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#settings">▶ ショートカット・不具合対処</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#bbs-section" style="color: var(--accent);">▶ 💬 雑談・質問掲示板</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#chests">▶ <span class="lang-ja">宝箱ローテーション術</span><span class="lang-en">Chest Rotation</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#runes">▶ <span class="lang-ja">ルーン解放優先度</span><span class="lang-en">Rune Priority</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#classes">▶ <span class="lang-ja">最強パーティ編成</span><span class="lang-en">Best Party Comp</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#skills">▶ <span class="lang-ja">スキルビルド推奨</span><span class="lang-en">Skill Builds</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#offline">▶ <span class="lang-ja">オフライン注意点</span><span class="lang-en">Offline Notes</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#world">▶ <span class="lang-ja">アクト別攻略</span><span class="lang-en">Act Guide</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#market">▶ <span class="lang-ja">Steamマーケット</span><span class="lang-en">Steam Market</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#settings">▶ <span class="lang-ja">ショートカット・不具合対処</span><span class="lang-en">Shortcuts &amp; Fixes</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#bbs-section" style="color: var(--accent);">▶ 💬 <span class="lang-ja">雑談・質問掲示板</span><span class="lang-en">Forum</span></a></li>
             </ul>
 
             <div class="info-box" style="margin-top: 30px; text-align: center; padding: 15px;">
-                <strong style="color: var(--accent);">現在プレイ中の人数</strong><br>
-                <span id="realtime-players" style="font-size: 1.5rem; font-weight: bold;">読み込み中...</span><br>
-                <span style="font-size: 0.8rem; color: #888;">(Steam リアルタイム)</span>
+                <strong style="color: var(--accent);"><span class="lang-ja">現在プレイ中の人数</span><span class="lang-en">Players in Game Now</span></strong><br>
+                <span id="realtime-players" style="font-size: 1.5rem; font-weight: bold;"><span class="lang-ja">読み込み中...</span><span class="lang-en">Loading...</span></span><br>
+                <span style="font-size: 0.8rem; color: #888;">(Steam <span class="lang-ja">リアルタイム</span><span class="lang-en">real-time</span>)</span>
             </div>
         </aside>
     </div>
 
-    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="ページトップへ">↑</button>
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">↑</button>
 
     <footer>
-        <p>&copy; 2026 タスクバーヒーロー攻略Wiki. All Rights Reserved. | 最終更新: 2026年6月25日</p>
+        <p><span class="lang-ja">&copy; 2026 タスクバーヒーロー攻略Wiki. All Rights Reserved. | 最終更新: 2026年6月25日</span><span class="lang-en">&copy; 2026 TBH: Task Bar Hero Wiki. All Rights Reserved. | Last updated: June 25, 2026</span></p>
         <div style="font-size: 0.9em; margin-top: 20px;">
-            <a href="#" style="color: #bdc3c7; margin: 0 15px;">ページトップ</a> | 
-            <a href="https://store.steampowered.com/app/3678970/TBH_Task_Bar_Hero/" style="color: #bdc3c7; margin: 0 15px;" target="_blank" rel="noopener">Steamストア</a> |
-            <a href="https://www.yamastudio.net/privacy.html" style="color: #bdc3c7; margin: 0 15px;">プライバシーポリシー</a> |
-            <a href="https://www.yamastudio.net/contact.html" style="color: #bdc3c7; margin: 0 15px;">お問い合わせ</a>
+            <a href="#" style="color: #bdc3c7; margin: 0 15px;"><span class="lang-ja">ページトップ</span><span class="lang-en">Top</span></a> | 
+            <a href="https://store.steampowered.com/app/3678970/TBH_Task_Bar_Hero/" style="color: #bdc3c7; margin: 0 15px;" target="_blank" rel="noopener"><span class="lang-ja">Steamストア</span><span class="lang-en">Steam Store</span></a> |
+            <a href="https://www.yamastudio.net/privacy.html" style="color: #bdc3c7; margin: 0 15px;"><span class="lang-ja">プライバシーポリシー</span><span class="lang-en">Privacy Policy</span></a> |
+            <a href="https://www.yamastudio.net/contact.html" style="color: #bdc3c7; margin: 0 15px;"><span class="lang-ja">お問い合わせ</span><span class="lang-en">Contact</span></a>
         </div>
         <p style="font-size: 0.75em; margin-top: 25px; color: #7f8c8d; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-            当Wikiは有志による非公式データベースであり、Nugem Studio様、Tesseract Studio様とは一切関係ありません。<br>
-            記載されているデータ、画像、システム名などの著作権は各権利者に帰属します。当サイトの情報を利用して発生したSteamマーケット等でのいかなる損失についても責任を負いかねます。
+            <span class="lang-ja">当Wikiは有志による非公式データベースであり、Nugem Studio様、Tesseract Studio様とは一切関係ありません。<br>
+            記載されているデータ、画像、システム名などの著作権は各権利者に帰属します。当サイトの情報を利用して発生したSteamマーケット等でのいかなる損失についても責任を負いかねます。</span>
+            <span class="lang-en">This wiki is an unofficial, fan-made database and is not affiliated with Nugem Studio or Tesseract Studio.<br>
+            All data, images, and system names are the property of their respective rights holders. We accept no liability for any losses on the Steam Market or elsewhere arising from use of this site's information.</span>
         </p>
     </footer>
 
@@ -1316,12 +1996,76 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
+
+        // ==========================================
+        // 1.5 言語切替（日本語 / English）
+        // ==========================================
+        function getLang() {
+            return document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'ja';
+        }
+
+        // 動的に生成・属性で設定するテキストの翻訳
+        const I18N = {
+            ja: {
+                searchPlaceholder: '例: ルビー、プリースト、金策',
+                bbsName: '名前（省略した場合は「名無しヒーロー」になります）',
+                bbsMessage: 'コメントを入力してください...',
+                playersUnit: ' 人',
+                playersLoadError: '取得エラー',
+                bbsNoPosts: 'まだ投稿はありません。最初のコメントを書き込んでみましょう！',
+                bbsLoadError: 'データの読み込みに失敗しました。テーブル名やRLSの設定を確認してください。',
+                bbsNotConfigured: 'Supabaseの設定が完了していないため、書き込みできません。',
+                bbsCooldown: (s) => `連続投稿は禁止されています。\nあと ${s} 秒お待ちください。`,
+                bbsEmpty: 'コメントを入力してください。',
+                bbsSending: '送信中...',
+                bbsSendFail: '送信に失敗しました。RLSの設定やテーブル構成を確認してください。',
+                searchNotFound: (q) => '「' + q + '」は見つかりませんでした。',
+                anonName: '名無しヒーロー'
+            },
+            en: {
+                searchPlaceholder: 'e.g. Ruby, Priest, gold farming',
+                bbsName: 'Name (defaults to "Anonymous Hero" if left blank)',
+                bbsMessage: 'Type your comment...',
+                playersUnit: ' players',
+                playersLoadError: 'Load error',
+                bbsNoPosts: 'No posts yet. Be the first to comment!',
+                bbsLoadError: 'Failed to load data. Check the table name and RLS settings.',
+                bbsNotConfigured: 'Cannot post because Supabase is not configured.',
+                bbsCooldown: (s) => `Rapid posting is not allowed.\nPlease wait ${s} more seconds.`,
+                bbsEmpty: 'Please enter a comment.',
+                bbsSending: 'Sending...',
+                bbsSendFail: 'Failed to send. Check the RLS settings and table structure.',
+                searchNotFound: (q) => '"' + q + '" was not found.',
+                anonName: 'Anonymous Hero'
+            }
+        };
+
+        function applyDynamicI18n() {
+            const t = I18N[getLang()];
+            const search = document.getElementById('searchInput');
+            if (search) search.placeholder = t.searchPlaceholder;
+            const bbsName = document.getElementById('bbs-name');
+            if (bbsName) bbsName.placeholder = t.bbsName;
+            const bbsMsg = document.getElementById('bbs-message');
+            if (bbsMsg) bbsMsg.placeholder = t.bbsMessage;
+        }
+
+        function toggleLang() {
+            const next = getLang() === 'en' ? 'ja' : 'en';
+            document.documentElement.setAttribute('data-lang', next);
+            document.documentElement.setAttribute('lang', next);
+            localStorage.setItem('lang', next);
+            applyDynamicI18n();
+            // 表示中の言語に合わせて掲示板・プレイヤー数を再描画
+            if (typeof fetchBbsMessages === 'function') fetchBbsMessages();
+        }
         
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
+            applyDynamicI18n();
             fetchBbsMessages();
             updateRealTimePlayers();
 
@@ -1342,7 +2086,9 @@
 
         function searchPage() {
             const input = document.getElementById('searchInput').value.trim();
-            const mainContent = document.getElementById('wiki-main-content') || document.querySelector('main');
+            // 表示中の言語コンテンツのみを検索対象にする
+            const mainContent = document.getElementById(getLang() === 'en' ? 'content-en' : 'content-ja')
+                || document.getElementById('wiki-main-content') || document.querySelector('main');
             if (!mainContent) return;
             
             // --- 同じキーワードで続けて検索された場合は「次へ」ジャンプ ---
@@ -1413,7 +2159,7 @@
                 searchMatches[currentMatchIndex].classList.add('active');
                 searchMatches[currentMatchIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                alert('「' + input + '」は見つかりませんでした。');
+                alert(I18N[getLang()].searchNotFound(input));
             }
         }
 
@@ -1448,14 +2194,15 @@
 
                 if (error) throw error;
 
+                const t = I18N[getLang()];
                 listEl.innerHTML = '';
                 if (data.length === 0) {
-                    listEl.innerHTML = '<p style="text-align:center; color:#888;">まだ投稿はありません。最初のコメントを書き込んでみましょう！</p>';
+                    listEl.innerHTML = '<p style="text-align:center; color:#888;">' + t.bbsNoPosts + '</p>';
                     return;
                 }
 
                 data.forEach((item, index) => {
-                    const safeName = escapeHTML(item.name || '名無しヒーロー');
+                    const safeName = escapeHTML(item.name || t.anonName);
                     const safeMessage = escapeHTML(item.message).replace(/\n/g, '<br>');
                     const dateObj = new Date(item.created_at);
                     const formattedDate = `${dateObj.getFullYear()}/${String(dateObj.getMonth()+1).padStart(2,'0')}/${String(dateObj.getDate()).padStart(2,'0')} ${String(dateObj.getHours()).padStart(2,'0')}:${String(dateObj.getMinutes()).padStart(2,'0')}`;
@@ -1473,14 +2220,15 @@
                 });
             } catch (err) {
                 console.error('Fetch Error:', err);
-                listEl.innerHTML = '<p style="color:#e74c3c; text-align:center; font-weight:bold;">データの読み込みに失敗しました。テーブル名やRLSの設定を確認してください。</p>';
+                listEl.innerHTML = '<p style="color:#e74c3c; text-align:center; font-weight:bold;">' + I18N[getLang()].bbsLoadError + '</p>';
             }
         }
 
         // メッセージの送信
         async function postBbsMessage() {
+            const t = I18N[getLang()];
             if (!isSupabaseConfigured) {
-                alert('Supabaseの設定が完了していないため、書き込みできません。');
+                alert(t.bbsNotConfigured);
                 return;
             }
 
@@ -1494,7 +2242,7 @@
                 
                 if (diffSeconds < COOLDOWN_SECONDS) {
                     const waitTime = COOLDOWN_SECONDS - diffSeconds;
-                    alert(`連続投稿は禁止されています。\nあと ${waitTime} 秒お待ちください。`);
+                    alert(t.bbsCooldown(waitTime));
                     return;
                 }
             }
@@ -1508,18 +2256,18 @@
             const messageVal = messageInput.value.trim();
 
             if (!messageVal) {
-                alert('コメントを入力してください。');
+                alert(t.bbsEmpty);
                 return;
             }
 
             btn.disabled = true;
-            btn.textContent = '送信中...';
+            btn.textContent = t.bbsSending;
 
             try {
                 const { error } = await supabaseClient
                     .from('bbs_messages')
                     .insert([
-                        { name: nameVal || '名無しヒーロー', message: messageVal }
+                        { name: nameVal || t.anonName, message: messageVal }
                     ]);
 
                 if (error) throw error;
@@ -1531,10 +2279,11 @@
                 await fetchBbsMessages();
             } catch (err) {
                 console.error('Insert Error:', err);
-                alert('送信に失敗しました。RLSの設定やテーブル構成を確認してください。');
+                alert(t.bbsSendFail);
             } finally {
                 btn.disabled = false;
-                btn.textContent = '書き込む';
+                // ボタン文言は span(.lang-ja/.lang-en) で管理しているため復元
+                btn.innerHTML = '<span class="lang-ja">書き込む</span><span class="lang-en">Post</span>';
             }
         }
 
@@ -1560,11 +2309,11 @@
 
                 // 取得した人数をカンマ区切りで表示
                 if (data && data.players !== undefined) {
-                    playerSpan.textContent = data.players.toLocaleString() + ' 人';
+                    playerSpan.textContent = data.players.toLocaleString() + I18N[getLang()].playersUnit;
                 }
             } catch (err) {
                 console.error('プレイヤー数取得エラー:', err);
-                playerSpan.textContent = '取得エラー';
+                playerSpan.textContent = I18N[getLang()].playersLoadError;
             }
 
             // 60秒ごとに最新の人数を再取得（APIへの負荷を考慮し60秒推奨）
@@ -1590,11 +2339,11 @@
                 // 取得したデータ(data.players)が存在すれば、HTMLを書き換える
                 if (data && data.players !== undefined) {
                     // .toLocaleString() を使うことで「142855」を「142,855」のようにカンマ区切りにしてくれます
-                    playerSpan.textContent = data.players.toLocaleString() + ' 人';
+                    playerSpan.textContent = data.players.toLocaleString() + I18N[getLang()].playersUnit;
                 }
             } catch (err) {
                 console.error('プレイヤー数取得エラー:', err);
-                playerSpan.textContent = '取得エラー';
+                playerSpan.textContent = I18N[getLang()].playersLoadError;
             }
 
             // 60秒（60000ミリ秒）ごとに最新の人数を再取得して自動更新する
