@@ -150,26 +150,36 @@
         [data-lang="en"] .lang-en { display: revert; }
         [data-lang="en"] .lang-ja { display: none; }
 
+        /* アンカースクロール時に固定ナビへ隠れないように余白を確保 */
+        section[id], h3[id] { scroll-margin-top: 80px; }
+
         nav {
             background-color: var(--secondary);
             display: flex;
-            justify-content: center;
-            padding: 1rem;
-            flex-wrap: wrap;
+            justify-content: safe center;
+            align-items: center;
+            padding: 0.6rem 0.5rem;
+            flex-wrap: nowrap;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
+        nav::-webkit-scrollbar { height: 6px; }
+        nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 3px; }
         nav a {
             color: #fff;
             text-decoration: none;
-            padding: 0.5rem 1.2rem;
-            margin: 0 5px;
+            padding: 0.45rem 0.7rem;
+            margin: 0 2px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             border-radius: 4px;
             transition: background 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         nav a:hover { background-color: var(--accent); }
         
@@ -609,17 +619,18 @@
 
     <nav>
         <a href="#overview"><span class="lang-ja">概要</span><span class="lang-en">Overview</span></a>
-        <a href="#beginner"><span class="lang-ja">序盤攻略</span><span class="lang-en">Beginner</span></a>
-        <a href="#runes"><span class="lang-ja">ルーン優先度</span><span class="lang-en">Rune Priority</span></a>
-        <a href="#chests"><span class="lang-ja">宝箱システム</span><span class="lang-en">Chests</span></a>
-        <a href="#offline"><span class="lang-ja">オフライン/AFK</span><span class="lang-en">Offline/AFK</span></a>
-        <a href="#classes"><span class="lang-ja">クラス・編成</span><span class="lang-en">Classes</span></a>
-        <a href="#skills"><span class="lang-ja">スキルビルド</span><span class="lang-en">Skill Builds</span></a>
-        <a href="#world"><span class="lang-ja">アクト攻略</span><span class="lang-en">Acts</span></a>
+        <a href="#beginner"><span class="lang-ja">序盤</span><span class="lang-en">Beginner</span></a>
+        <a href="#runes"><span class="lang-ja">ルーン</span><span class="lang-en">Rune Priority</span></a>
+        <a href="#chests"><span class="lang-ja">宝箱</span><span class="lang-en">Chests</span></a>
+        <a href="#offline"><span class="lang-ja">オフライン</span><span class="lang-en">Offline/AFK</span></a>
+        <a href="#classes"><span class="lang-ja">クラス編成</span><span class="lang-en">Classes</span></a>
+        <a href="#skills"><span class="lang-ja">スキル</span><span class="lang-en">Skill Builds</span></a>
+        <a href="#world"><span class="lang-ja">アクト</span><span class="lang-en">Acts</span></a>
         <a href="#cube"><span class="lang-ja">キューブ</span><span class="lang-en">Cube</span></a>
         <a href="#pets"><span class="lang-ja">ペット</span><span class="lang-en">Pets</span></a>
         <a href="#market"><span class="lang-ja">マーケット</span><span class="lang-en">Market</span></a>
-        <a href="#settings"><span class="lang-ja">設定・ショートカット</span><span class="lang-en">Settings</span></a>
+        <a href="#tools"><span class="lang-ja">🛠 ツール</span><span class="lang-en">🛠 Tools</span></a>
+        <a href="#settings"><span class="lang-ja">設定</span><span class="lang-en">Settings</span></a>
         <a href="#missable"><span class="lang-ja">FAQ</span><span class="lang-en">FAQ</span></a>
         <a href="#bbs-section"><span class="lang-ja">💬 掲示板</span><span class="lang-en">💬 Forum</span></a>
     </nav>
@@ -664,6 +675,7 @@
                     <li><a href="#cube">8. Hero-dric Cube（8機能）完全解析</a></li>
                     <li><a href="#pets">9. ペット図鑑・ドロップ場所</a></li>
                     <li><a href="#market">10. Steamマーケット活用法</a></li>
+                    <li><a href="#tools">★ 便利ツール：TBH Market Overlay（価格表示ツール）</a></li>
                     <li><a href="#settings">11. 設定・ショートカット・トラブル対処</a></li>
                     <li><a href="#missable">12. よくある質問（FAQ）</a></li>
                 </ul>
@@ -1179,6 +1191,55 @@
                 <p>※マーケットの売買は<strong>絶対に取り消し不可</strong>です。出品時は価格を指差し確認してください。なお、チート検知で2回以上の不正が確認されると<strong>マーケット永久BAN</strong>の対象になります（ゲームプレイ自体は継続可能）。</p>
             </section>
 
+            <section id="tools">
+                <h2>🛠 便利ツール：TBH Market Overlay（価格表示ツール）</h2>
+                <p>マーケットでの売買を効率化するなら、<strong>アイテムの相場をその場で確認できる</strong>ことが何より重要です。ここでは当Wiki管理人が制作した非公式オーバーレイツール「<strong>TBH Market Overlay</strong>」を紹介します。インベントリでアイテムにマウスを乗せるだけで、Steamマーケットの最安値と在庫数を画面上に重ねて表示します。</p>
+
+                <div class="success-box">
+                    <strong>📥 ダウンロード（無料）：</strong> <a href="https://www.patreon.com/ShizukoYamamura/posts/tbh-market-task-162086879" target="_blank" rel="noopener">TBH Market Overlay（Patreon配布ページ）</a><br>
+                    <span style="font-weight:normal;">exeをダブルクリックするだけで動作。Pythonなどのインストールは不要です。完全無料で利用できます。</span>
+                </div>
+
+                <figure style="margin: 25px 0; text-align: center;">
+                    <img src="images/overlay-sample.png" alt="タスクバーヒーローのアイテム価格・取引情報の表示例" style="max-width: 360px; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--card-shadow);">
+                    <figcaption style="font-size: 0.85rem; color: #888; margin-top: 8px;">アイテムの取引価格・必要レベル・固有ステータスの表示例（アルカナ等級のリミットレスボウ）</figcaption>
+                </figure>
+
+                <h3>TBH Market Overlay とは</h3>
+                <p>Task Bar Heroをプレイ中、アイテムにカーソルを合わせるだけで、その<strong>アイテムのSteamマーケット最安値と出品在庫数</strong>を画面に重ねて表示する非公式オーバーレイツールです。いちいちブラウザでマーケットを開いて確認する手間がなくなり、売買やレアリティの判断がその場で完結します。</p>
+
+                <h3>主な特徴</h3>
+                <ul>
+                    <li><strong>マウスオーバーするだけ：</strong> アイテムの最安値と在庫を即表示</li>
+                    <li><strong>レアリティ対応：</strong> 等級ごとに正しい価格を判定</li>
+                    <li><strong>多言語対応：</strong> 日本語/英語を切り替え可能（価格は円・USD表示）</li>
+                    <li><strong>インストール不要：</strong> exeをダブルクリックするだけ（Python等は不要）</li>
+                    <li><strong>軽量・非侵襲：</strong> ゲームの動作を妨げません</li>
+                </ul>
+
+                <h3>使い方（かんたん3ステップ）</h3>
+                <ol class="milestone-list">
+                    <li>exe をダブルクリックして起動</li>
+                    <li>初回だけ自動でデータを準備（数分）</li>
+                    <li>ゲームでアイテムにカーソルを合わせると価格が表示されます</li>
+                </ol>
+                <p>※価格は「価格を更新」ボタンでいつでも最新にできます。<strong>うまく動作しない場合は、ゲーム内言語を英語に設定</strong>してください（OCR認識の都合）。</p>
+
+                <h3>動作要件</h3>
+                <ul>
+                    <li>Windows 10 / 11（64bit）</li>
+                    <li>Task Bar Hero がインストール済み</li>
+                    <li>インターネット接続（価格取得のため）</li>
+                    <li>Windowsの OCR 言語パック（使用言語のもの）</li>
+                </ul>
+
+                <div class="alert-box">
+                    <strong>安全性について（重要）：</strong> 本ツールは“チート”ではありません。ゲーム本体には一切干渉しません。行うのは<strong>自分の画面を読み取る／Steamの公開データを参照する</strong>のみで、メモリ読み取り・改造・ファイル書き換え・ゲーム内描画への介入は行いません。画面録画ソフトのオーバーレイと同じ仕組みのため、通常のプレイに影響しません。
+                </div>
+
+                <p style="font-size: 0.85rem; color: #888;">※本ツールは非公式のファンメイドであり、開発元・Valveとは無関係です。表示価格はSteamマーケットの参考値であり、実際の取引価格を保証しません。ご利用は自己責任で、ゲームのEULA／Steam利用規約を必ずご確認ください。</p>
+            </section>
+
             <section id="settings">
                 <h2>11. 設定・ショートカット・トラブル対処</h2>
 
@@ -1297,12 +1358,13 @@
                     <li><a href="#cube">8. Hero-dric Cube (8 functions)</a></li>
                     <li><a href="#pets">9. Pet Index &amp; Drop Locations</a></li>
                     <li><a href="#market">10. Steam Market Guide</a></li>
+                    <li><a href="#tools">★ Handy Tool: TBH Market Overlay (price display)</a></li>
                     <li><a href="#settings">11. Settings, Shortcuts &amp; Troubleshooting</a></li>
                     <li><a href="#missable">12. Frequently Asked Questions (FAQ)</a></li>
                 </ul>
             </div>
 
-            <section>
+            <section id="overview-en">
                 <h2>0. Game Overview &amp; Latest Status (June 2026)</h2>
                 <p><strong>TBH: Task Bar Hero</strong> is an ultra-compact idle hack-and-slash RPG that fits in your Windows taskbar, released on Steam on May 27, 2026 by Nugem Studio / Tesseract Studio. It became a massive hit right after launch, surpassing tens of thousands of concurrent players, and remains hugely popular as of June 2026.</p>
 
@@ -1357,7 +1419,7 @@
                 </ol>
             </section>
 
-            <section>
+            <section id="beginner-en">
                 <h2>1. Beginner Guide (0–10 Hour Roadmap)</h2>
                 <p>The two most important things early in Task Bar Hero are <strong>"unlocking the 3-hero party as soon as possible"</strong> and <strong>"farming chests efficiently."</strong> Below is the optimal route for the first ~10 hours, based on community testing as of June 2026.</p>
 
@@ -1365,7 +1427,7 @@
                     <strong>Most important:</strong> The third hero slot requires about <strong>150,000 gold</strong> via the "Rune of Command" in the Rune tree. Don't spend gold on synthesis early — save up with Alchemy and unlock it first.
                 </div>
 
-                <h3>First 1–3 Hours: Install to 2-Hero Party</h3>
+                <h3 id="step1-en">First 1–3 Hours: Install to 2-Hero Party</h3>
                 <div class="info-box">
                     <ol>
                         <li><strong>Pick your starting class:</strong> Start with Knight (tanky, beginner-friendly) or Ranger (fast farming). Add the Priest as your <strong>second hero</strong> after claiming the free DLC.</li>
@@ -1377,7 +1439,7 @@
                     </ol>
                 </div>
 
-                <h3>3–10 Hours: 3-Hero Party &amp; Clearing Act 1</h3>
+                <h3 id="step2-en">3–10 Hours: 3-Hero Party &amp; Clearing Act 1</h3>
                 <ul>
                     <li><strong>Save 150,000G for the third slot:</strong> Completes the staple Knight + Priest + Ranger comp. Progress speeds up dramatically afterward.</li>
                     <li><strong>Unlock the Rune of Awakening:</strong> +1 skill slot for all heroes. Enables second skills like the Priest's "Blessing of Strength" for a big damage spike.</li>
@@ -1395,7 +1457,7 @@
                 </ul>
             </section>
 
-            <section>
+            <section id="runes-en">
                 <h2>2. Rune Unlock Priority &amp; Costs</h2>
                 <p>The Rune tree is a <strong>permanent upgrade you buy with gold</strong>. Unlocks can't be undone, so how you spend early gold is a key turning point. It unlocks at Lv3.</p>
 
@@ -1436,7 +1498,7 @@
                 <p>*Costs are cumulative estimates on the Rune tree and may change with patches.</p>
             </section>
 
-            <section>
+            <section id="chests-en">
                 <h2>3. Chest System Guide (Most Important)</h2>
                 <p>Chests are the <strong>biggest source</strong> of gear and materials. Your progression speed in TBH is largely determined by how you manage chests — one of the most discussed strategy topics in the community even as of June 2026.</p>
 
@@ -1452,7 +1514,7 @@
                     <li><strong>Act bosses always drop chests:</strong> If you don't get one, check Mailbox, wait 10 seconds, then hit refresh.</li>
                 </ul>
 
-                <h3 id="chest-rotation">Chest Rotation Technique (Max Efficiency)</h3>
+                <h3 id="chest-rotation-en">Chest Rotation Technique (Max Efficiency)</h3>
                 <div class="info-box">
                     <ol>
                         <li><strong>Stockpile white chests with auto-open OFF</strong> → turn auto-open ON to process them all once inventory fills.</li>
@@ -1462,7 +1524,7 @@
                     </ol>
                 </div>
 
-                <h3 id="chest-levels">Chest Level by Stage (Main Stages)</h3>
+                <h3 id="chest-levels-en">Chest Level by Stage (Main Stages)</h3>
                 <table>
                     <thead>
                         <tr><th>Stage</th><th>Difficulty</th><th>Chest Lv</th><th>Use</th></tr>
@@ -1491,7 +1553,7 @@
                 </ul>
             </section>
 
-            <section>
+            <section id="offline-en">
                 <h2>4. Offline vs AFK (Background Play)</h2>
                 <p>This is the biggest trap for players coming from other idle RPGs. In TBH, <strong>"offline with the game closed" and "AFK with the game running" are completely different</strong>.</p>
 
@@ -1516,7 +1578,7 @@
                 </div>
             </section>
 
-            <section>
+            <section id="classes-en">
                 <h2>5. All 6 Classes &amp; Best Party Comp</h2>
                 <p>Of the 6 classes, Knight, Ranger, and Sorcerer are free. Priest is free DLC, and Hunter/Slayer are paid DLC (about $3.99 each). <strong>Unlocking a class does not add a hero slot</strong> — slots only increase via the "Rune of Command."</p>
 
@@ -1588,7 +1650,7 @@
                 <p>A balanced loadout is fine up to Normal, but <strong>specialization is mandatory at Nightmare and above</strong>. DPS should go all-in on attack speed/crit; tanks on armor/HP/damage reduction. Half-measure stat spreads cause walls.</p>
             </section>
 
-            <section>
+            <section id="skills-en">
                 <h2>6. Recommended Skill Builds by Class</h2>
                 <p>Skill points <strong>can be refunded (reset)</strong>, but having a plan early makes respeccing easier later. Always <strong>set learned skills into a slot</strong>.</p>
 
@@ -1617,7 +1679,7 @@
                 </ul>
             </section>
 
-            <section>
+            <section id="world-en">
                 <h2>7. Act Guide &amp; XP Efficiency</h2>
                 <p>The core XP rule is <strong>"killing enemies around your character level +6 is most efficient."</strong> A level gap of 10+ triggers an XP/drop penalty.</p>
 
@@ -1675,7 +1737,7 @@
                 </table>
             </section>
 
-            <section>
+            <section id="cube-en">
                 <h2>8. Hero-dric Cube (8 Functions)</h2>
                 <p>The Cube is a core system unlocked at Lv4. It defaults to Synthesis mode, but early on the standard play is to <strong>switch to Alchemy to earn gold</strong>. Raising the Cube level unlocks 8 functions in order.</p>
 
@@ -1745,7 +1807,7 @@
                 <p>*Gems can be removed, but a socketed gem is destroyed in the process. Use Removal before listing on the market.</p>
             </section>
 
-            <section>
+            <section id="pets-en">
                 <h2>9. Pet Index &amp; Drop Locations</h2>
                 <p>Pets grant party-wide passive effects just by being owned or equipped. Drop rates are very low (about 0.01%–0.05%), requiring long idle farming. The Supporter Pack DLC also includes pet-related bonuses.</p>
 
@@ -1765,7 +1827,7 @@
                 </table>
             </section>
 
-            <section>
+            <section id="market-en">
                 <h2>10. Steam Market Guide</h2>
                 <p>A major feature of this game is buying/selling items via the Steam Community Market. Rare gear you pick up while idle turns into Steam Wallet funds. Note that <strong>Steam Guard (mobile authentication) is required</strong>.</p>
 
@@ -1812,7 +1874,56 @@
                 <p>*Market trades are <strong>absolutely non-cancellable</strong>. Double-check prices when listing. Also, confirmed cheating twice or more results in a <strong>permanent market ban</strong> (gameplay itself can continue).</p>
             </section>
 
-            <section>
+            <section id="tools-en">
+                <h2>🛠 Handy Tool: TBH Market Overlay (Price Display)</h2>
+                <p>To trade efficiently on the market, nothing matters more than being able to <strong>check item prices on the spot</strong>. Here we introduce an unofficial overlay tool made by this wiki's admin: <strong>TBH Market Overlay</strong>. Just hover over an item in your inventory and it overlays the Steam Market's lowest price and listing stock right on your screen.</p>
+
+                <div class="success-box">
+                    <strong>📥 Download (free):</strong> <a href="https://www.patreon.com/ShizukoYamamura/posts/tbh-market-task-162086879" target="_blank" rel="noopener">TBH Market Overlay (Patreon page)</a><br>
+                    <span style="font-weight:normal;">Just double-click the exe to run. No Python or other installs required. Completely free to use.</span>
+                </div>
+
+                <figure style="margin: 25px 0; text-align: center;">
+                    <img src="images/overlay-sample.png" alt="Example of an item's trade price and info in Task Bar Hero" style="max-width: 360px; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--card-shadow);">
+                    <figcaption style="font-size: 0.85rem; color: #888; margin-top: 8px;">Example of an item's trade price, required level, and unique stats (Arcana-grade Limitless Bow)</figcaption>
+                </figure>
+
+                <h3>What is TBH Market Overlay?</h3>
+                <p>An unofficial overlay tool that, while you play Task Bar Hero, shows an <strong>item's Steam Market lowest price and listing stock</strong> on screen just by hovering over it. No more opening a browser to check the market — you can judge trades and rarity right away.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Just hover:</strong> Instantly shows the item's lowest price and stock</li>
+                    <li><strong>Rarity-aware:</strong> Correctly identifies the price per grade</li>
+                    <li><strong>Multilingual:</strong> Switch between Japanese/English (prices in JPY / USD)</li>
+                    <li><strong>No install:</strong> Just double-click the exe (no Python, etc.)</li>
+                    <li><strong>Lightweight &amp; non-intrusive:</strong> Doesn't interfere with the game</li>
+                </ul>
+
+                <h3>How to Use (3 Easy Steps)</h3>
+                <ol class="milestone-list">
+                    <li>Double-click the exe to launch</li>
+                    <li>It auto-prepares data on first run (a few minutes)</li>
+                    <li>Hover over an item in-game to see its price</li>
+                </ol>
+                <p>*Prices can be refreshed anytime with the "Update Prices" button. <strong>If it doesn't work well, set the in-game language to English</strong> (for OCR recognition).</p>
+
+                <h3>Requirements</h3>
+                <ul>
+                    <li>Windows 10 / 11 (64-bit)</li>
+                    <li>Task Bar Hero installed</li>
+                    <li>Internet connection (for fetching prices)</li>
+                    <li>Windows OCR language pack (for your language)</li>
+                </ul>
+
+                <div class="alert-box">
+                    <strong>About safety (important):</strong> This tool is NOT a "cheat." It does not interfere with the game itself. It only <strong>reads your own screen and references Steam's public data</strong> — it does not read memory, modify, rewrite files, or inject into in-game rendering. It works like a screen-recorder overlay, so it doesn't affect normal play.
+                </div>
+
+                <p style="font-size: 0.85rem; color: #888;">*This is an unofficial fan-made tool, not affiliated with the developer or Valve. Displayed prices are reference values from the Steam Market and don't guarantee actual trade prices. Use at your own risk and review the game's EULA / Steam Subscriber Agreement.</p>
+            </section>
+
+            <section id="settings-en">
                 <h2>11. Settings, Shortcuts &amp; Troubleshooting</h2>
 
                 <h3>Official Shortcut Keys</h3>
@@ -1851,7 +1962,7 @@
                 <p>Check the in-game Mail (top-right mail icon). Wait 10s, then hit refresh.</p>
             </section>
 
-            <section>
+            <section id="missable-en">
                 <h2>12. Frequently Asked Questions (FAQ)</h2>
 
                 <h3>Irreversible Actions</h3>
@@ -1926,6 +2037,7 @@
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#offline">▶ <span class="lang-ja">オフライン注意点</span><span class="lang-en">Offline Notes</span></a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#world">▶ <span class="lang-ja">アクト別攻略</span><span class="lang-en">Act Guide</span></a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#market">▶ <span class="lang-ja">Steamマーケット</span><span class="lang-en">Steam Market</span></a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#tools" style="color: var(--accent);">🛠 <span class="lang-ja">価格表示ツール (Overlay)</span><span class="lang-en">Price Overlay Tool</span></a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#settings">▶ <span class="lang-ja">ショートカット・不具合対処</span><span class="lang-en">Shortcuts &amp; Fixes</span></a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#bbs-section" style="color: var(--accent);">▶ 💬 <span class="lang-ja">雑談・質問掲示板</span><span class="lang-en">Forum</span></a></li>
             </ul>
@@ -2075,7 +2187,37 @@
                     backToTop.classList.toggle('visible', window.scrollY > 400);
                 });
             }
+
+            setupSmartAnchors();
         });
+
+        // ==========================================
+        // 1.6 言語対応アンカー（表示中の言語の見出しへスクロール）
+        // ==========================================
+        // ナビ/目次のリンクは日本語版IDを指すため、英語表示中は
+        // 対応する「-en」要素があればそちらへスクロールする。
+        function setupSmartAnchors() {
+            document.addEventListener('click', function (e) {
+                const a = e.target.closest('a[href^="#"]');
+                if (!a) return;
+                const raw = a.getAttribute('href');
+                if (!raw || raw === '#' || raw.length < 2) return;
+
+                const base = raw.slice(1).replace(/-en$/, '');
+                const lang = getLang();
+                let target = null;
+                if (lang === 'en') {
+                    target = document.getElementById(base + '-en') || document.getElementById(base);
+                } else {
+                    target = document.getElementById(base);
+                }
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (history.replaceState) history.replaceState(null, '', '#' + base);
+                }
+            });
+        }
 
 // ==========================================
         // 2. ページ内検索（順次ジャンプ機能付き）
