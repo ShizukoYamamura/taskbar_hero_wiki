@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="タスクバーヒーロー（TBH）の完全網羅・最強総合攻略Wikiです。全クラスの詳細ビルド、アクト別攻略、キューブ確率、ルーンコスト、ダークモード対応など、1万字を超える圧倒的情報量でお届けします。">
-    <title>タスクバーヒーロー(TBH)完全攻略Wiki | ダークモード対応・最強データベース</title>
+    <meta name="description" content="タスクバーヒーロー（TBH）2026年6月最新攻略Wiki。宝箱ローテーション、ルーン優先度、最強編成、キューブ8機能、Steamマーケット、オフライン報酬の違いまで完全網羅。">
+    <title>タスクバーヒーロー(TBH)攻略Wiki【2026年6月最新】| 宝箱・ルーン・編成・マーケット</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9908835148006630"
         crossorigin="anonymous"></script>
     <style>
@@ -12,26 +12,30 @@
            CSS Variables (Light & Dark Mode)
            ========================================== */
         :root {
-            --primary: #2c3e50;
-            --secondary: #34495e;
+            --primary: #1a2332;
+            --secondary: #243044;
             --accent: #e74c3c;
+            --gold: #f1c40f;
             --link: #2980b9;
-            --bg: #f4f7f6;
-            --text: #333333;
-            --border: #ced6e0;
+            --bg: #eef2f7;
+            --text: #2c3e50;
+            --border: #d5dce6;
             --box-bg: #ffffff;
-            --th-bg: #f8f9fa;
-            --tr-even: #fbfcfd;
-            --alert-bg: #fff3cd;
-            --alert-border: #ffecb5;
-            --alert-text: #856404;
+            --th-bg: #f4f6f9;
+            --tr-even: #fafbfc;
+            --alert-bg: #fff8e1;
+            --alert-border: #ffc107;
+            --alert-text: #7d5a00;
+            --success-bg: #e8f5e9;
+            --success-border: #4caf50;
+            --card-shadow: 0 2px 12px rgba(26,35,50,0.08);
         }
 
-        /* ダークモード用変数群 */
         [data-theme="dark"] {
             --primary: #0d1117;
             --secondary: #161b22;
             --accent: #ff7675;
+            --gold: #ffd93d;
             --link: #74b9ff;
             --bg: #010409;
             --text: #c9d1d9;
@@ -42,6 +46,9 @@
             --alert-bg: #3d2c00;
             --alert-border: #664d03;
             --alert-text: #ffecb5;
+            --success-bg: #1a2e1a;
+            --success-border: #2e7d32;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.4);
         }
 
         /* ==========================================
@@ -55,6 +62,7 @@
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
         }
         
         header {
@@ -328,6 +336,149 @@
             border-top: 5px solid var(--accent);
         }
 
+        /* 新デザインコンポーネント */
+        .update-banner {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            color: #fff;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--gold);
+        }
+        .update-banner strong { color: var(--gold); }
+
+        .quick-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 30px 0;
+        }
+        .quick-card {
+            background: var(--th-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: var(--card-shadow);
+        }
+        .quick-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        .quick-card a { color: var(--text); text-decoration: none; display: block; }
+        .quick-card .icon { font-size: 2rem; margin-bottom: 8px; }
+        .quick-card .label { font-weight: bold; font-size: 0.95rem; }
+        .quick-card .desc { font-size: 0.8rem; color: #888; margin-top: 6px; font-weight: normal; }
+
+        .milestone-list {
+            counter-reset: milestone;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .milestone-list li {
+            counter-increment: milestone;
+            padding: 16px 16px 16px 60px;
+            margin-bottom: 12px;
+            background: var(--th-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--gold);
+            position: relative;
+        }
+        .milestone-list li::before {
+            content: counter(milestone);
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gold);
+            color: #000;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .success-box {
+            background-color: var(--success-bg);
+            border-left: 5px solid var(--success-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .rarity-common { color: #95a5a6; }
+        .rarity-uncommon { color: #2ecc71; }
+        .rarity-rare { color: #3498db; }
+        .rarity-legendary { color: #f39c12; }
+        .rarity-immortal { color: #e74c3c; }
+        .rarity-arcana { color: #9b59b6; }
+
+        .comment-item {
+            border-bottom: 1px solid var(--border);
+            padding: 18px 0;
+        }
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .comment-number {
+            background: var(--secondary);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 6px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: scale(1.1); }
+
+        kbd {
+            background: var(--th-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: monospace;
+            font-size: 0.9em;
+            box-shadow: 0 2px 0 var(--border);
+        }
+
+        code {
+            background: var(--th-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
 /* 検索ハイライト用クラス */
         mark.highlight {
             background-color: #f1c40f;
@@ -403,339 +554,618 @@
 </head>
 <body>
 
+    <div class="update-banner">
+        <strong>2026年6月25日 最新版</strong> — 宝箱ローテーション・ルーン優先度・スキルビルド・6月パッチ情報を反映しました
+    </div>
+
     <header>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 ダークモード切替</button>
-        <h1>タスクバーヒーロー(TBH) 完全攻略Wiki</h1>
-        <p>〜総文字数1万字超え！限界まで深掘りした究極のデータベース〜</p>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 ダークモード</button>
+        <h1>タスクバーヒーロー(TBH) 攻略Wiki</h1>
+        <p>〜タスクバー放置RPGの完全攻略データベース【2026年6月最新】〜</p>
     </header>
 
     <nav>
+        <a href="#overview">概要</a>
         <a href="#beginner">序盤攻略</a>
-        <a href="#classes">最強キャラ・全クラス詳細ビルド</a>
-        <a href="#world">アクト別世界攻略チャート</a>
-        <a href="#cube">キューブ完全解析</a>
-        <a href="#runes">ルーンツリーデータベース</a>
-        <a href="#pets">ペット図鑑</a>
-        <a href="#market">Steamマーケット経済学</a>
-        <a href="#bbs-section">💬 雑談掲示板</a>
+        <a href="#runes">ルーン優先度</a>
+        <a href="#chests">宝箱システム</a>
+        <a href="#offline">オフライン/AFK</a>
+        <a href="#classes">クラス・編成</a>
+        <a href="#skills">スキルビルド</a>
+        <a href="#world">アクト攻略</a>
+        <a href="#cube">キューブ</a>
+        <a href="#pets">ペット</a>
+        <a href="#market">マーケット</a>
+        <a href="#settings">設定・ショートカット</a>
+        <a href="#missable">FAQ</a>
+        <a href="#bbs-section">💬 掲示板</a>
     </nav>
 
     <div class="container">
         <main id="wiki-main-content">
             <div style="font-size: 0.9em; margin-bottom: 20px; color: #888;">
-                ホーム > <strong>タスクバーヒーロー攻略Wiki【完全版】</strong>
+                ホーム &gt; <strong>タスクバーヒーロー攻略Wiki【2026年6月最新】</strong>
+            </div>
+
+            <div class="quick-cards">
+                <div class="quick-card"><a href="#beginner"><div class="icon">🚀</div><div class="label">序盤の進め方</div><div class="desc">最初の10時間ロードマップ</div></a></div>
+                <div class="quick-card"><a href="#runes"><div class="icon">◈</div><div class="label">ルーン優先度</div><div class="desc">何から解放するか</div></a></div>
+                <div class="quick-card"><a href="#chests"><div class="icon">📦</div><div class="label">宝箱攻略</div><div class="desc">ローテーション術</div></a></div>
+                <div class="quick-card"><a href="#classes"><div class="icon">⚔</div><div class="label">最強編成</div><div class="desc">Knight+Priest+Ranger</div></a></div>
+                <div class="quick-card"><a href="#offline"><div class="icon">⏸</div><div class="label">オフライン注意</div><div class="desc">宝箱は落ちない！</div></a></div>
+                <div class="quick-card"><a href="#market"><div class="icon">💰</div><div class="label">マーケット</div><div class="desc">金策・取引のコツ</div></a></div>
             </div>
 
             <div class="toc">
-                <p>超特大ボリュームWiki 目次</p>
+                <p>攻略Wiki 目次</p>
                 <ul>
-                    <li><a href="#beginner">1. 初心者必見！序盤〜中盤の完璧な進め方（Day1-Day7）</a>
+                    <li><a href="#overview">0. ゲーム概要・2026年6月最新状況</a></li>
+                    <li><a href="#beginner">1. 初心者向け序盤攻略（0〜10時間ロードマップ）</a>
                         <ul>
-                            <li><a href="#step1">Day1〜3：最速レベリングとキャラ解放</a></li>
-                            <li><a href="#step2">Day4〜7：キューブ解放とソウルストーン稼ぎ</a></li>
+                            <li><a href="#step1">最初の1〜3時間：インストール〜2人編成</a></li>
+                            <li><a href="#step2">3〜10時間：3人編成とアクト1突破</a></li>
                         </ul>
                     </li>
-                    <li><a href="#classes">2. 最強キャラランキング＆全6クラス完全ビルドガイド</a>
+                    <li><a href="#runes">2. ルーン解放優先度・コスト一覧</a></li>
+                    <li><a href="#chests">3. 宝箱システム完全攻略（最重要）</a>
                         <ul>
-                            <li><a href="#class-priest">1位：プリースト（回復・タンクの絶対王者）</a></li>
-                            <li><a href="#class-hunter">2位：ハンター（対ボス持続ダメージの鬼）</a></li>
-                            <li><a href="#class-knight">3位：ナイト（不動のメインタンク）</a></li>
-                            <li><a href="#class-ranger">4位：レンジャー（手数の鬼・序盤周回王）</a></li>
-                            <li><a href="#class-sorcerer">5位：ソーサラー（画面一掃のAoE特化）</a></li>
-                            <li><a href="#class-slayer">6位：スレイヤー（諸刃の剣・超火力アタッカー）</a></li>
+                            <li><a href="#chest-rotation">宝箱ローテーション術</a></li>
+                            <li><a href="#chest-levels">ステージ別宝箱レベル表</a></li>
                         </ul>
                     </li>
-                    <li><a href="#world">3. アクト別攻略チャート・経験値効率完全網羅</a></li>
-                    <li><a href="#cube">4. Hero-dric Cube（キューブ）システム完全解析</a>
-                        <ul>
-                            <li><a href="#cube-synthesis">合成（Synthesis）の確率と仕様</a></li>
-                            <li><a href="#cube-craft">クラフト（Crafting）レシピ一覧</a></li>
-                            <li><a href="#cube-deco">装飾（Decoration）宝石効果データ</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#runes">5. ルーンツリー解放コスト完全データベース</a></li>
-                    <li><a href="#pets">6. ペットシステムと進化・ドロップテーブル</a></li>
-                    <li><a href="#market">7. Steamマーケット金策・RMT経済学</a></li>
-                    <li><a href="#missable">8. 取り返しのつかない要素・よくある質問（FAQ）</a></li>
+                    <li><a href="#offline">4. オフライン vs AFK（背景プレイ）の違い</a></li>
+                    <li><a href="#classes">5. 全6クラス評価・最強パーティ編成</a></li>
+                    <li><a href="#skills">6. クラス別スキルビルド推奨</a></li>
+                    <li><a href="#world">7. アクト別攻略・経験値効率表</a></li>
+                    <li><a href="#cube">8. Hero-dric Cube（8機能）完全解析</a></li>
+                    <li><a href="#pets">9. ペット図鑑・ドロップ場所</a></li>
+                    <li><a href="#market">10. Steamマーケット活用法</a></li>
+                    <li><a href="#settings">11. 設定・ショートカット・トラブル対処</a></li>
+                    <li><a href="#missable">12. よくある質問（FAQ）</a></li>
                 </ul>
             </div>
 
-            <section id="beginner">
-                <h2>1. 初心者必見！序盤〜中盤の完璧な進め方（Day1-Day7）</h2>
-                <p>タスクバーの小さな画面の中で、いかに効率よくリソース（経験値、ゴールド、アイテム）を稼ぐかがこのゲームの肝です。有志の検証により最適化された、ゲーム開始から1週間でエンドコンテンツ入り口に立つためのチャートを公開します。</p>
+            <section id="overview">
+                <h2>0. ゲーム概要・2026年6月最新状況</h2>
+                <p><strong>タスクバーヒーロー（TBH: Task Bar Hero）</strong>は、Nugem Studio / Tesseract Studioが2026年5月27日にSteamでリリースした、タスクバーに収まる超小型の放置ハクスラRPGです。リリース直後から同時接続数が3万人を突破するなど大ヒットを記録し、2026年6月時点でも人気が続いています。</p>
 
-                <h3 id="step1">Day 1〜3：最速レベリングとキャラ解放（第1幕の突破）</h3>
+                <div class="info-box">
+                    <strong>本作の特徴</strong>
+                    <ul>
+                        <li><strong>超コンパクトUI：</strong> デスクトップの隅やタスクバーで動作。作業しながら放置可能。</li>
+                        <li><strong>3ヒーロー編成：</strong> ルーンで最大3人まで編成。6クラス（無料3＋無料DLCプリースト＋有料ハンター/スレイヤー）。</li>
+                        <li><strong>500種以上のアイテム：</strong> コモンからコズミックまで10段階のレアリティ。</li>
+                        <li><strong>3アクト × 4難易度：</strong> 普通・悪夢・地獄・トーメントの4段階。</li>
+                        <li><strong>Steamマーケット連携：</strong> レジェンダリー以上の装備をリアルマネーで取引可能（キューブLv10で解放）。</li>
+                    </ul>
+                </div>
+
+                <h3>2026年6月のアップデート・コミュニティ状況</h3>
+                <ul>
+                    <li><strong>6月8日パッチ：</strong> 宝箱の受取方法が改善（メール更新で受け取りやすくなった）。</li>
+                    <li><strong>サーバー安定化：</strong> リリース直後の宝箱バグ・ドロップ不具合は大幅に改善。</li>
+                    <li><strong>チート対策：</strong> チート使用者へのマーケット永久BAN措置が実施済み。</li>
+                    <li><strong>DLCセール：</strong> ハンター・スレイヤー等の有料DLCがセール中のことも。</li>
+                    <li><strong>無料DLC：</strong> プリーストクラスはSteamストアページから<strong>無料で入手必須</strong>。</li>
+                </ul>
+
+                <h3>最初にやることチェックリスト</h3>
+                <ol class="milestone-list">
+                    <li><strong>Steamからインストール</strong>（Windows 10/11 64bit）。マーケット利用にはブロードバンド接続が必要。</li>
+                    <li><strong>無料プリーストDLCを入手</strong>してから初回起動。</li>
+                    <li><strong>設定で自動リトライをON</strong>にする（ステージ失敗時に自動再挑戦）。</li>
+                    <li>最初のヒーローは<strong>ナイト（安全）</strong>か<strong>レンジャー（高速周回）</strong>を選択。</li>
+                    <li>Lv3でルーン、Lv4でキューブが解放。錬金術でゴールドを貯め、ルーン解放を最優先。</li>
+                </ol>
+            </section>
+
+            <section id="beginner">
+                <h2>1. 初心者向け序盤攻略（0〜10時間ロードマップ）</h2>
+                <p>タスクバーヒーローの序盤で最も重要なのは<strong>「3人編成の早期解放」</strong>と<strong>「宝箱を効率よく回すこと」</strong>です。以下は2026年6月時点のコミュニティ検証に基づく、ゲーム開始から約10時間の最適ルートです。</p>
+
+                <div class="alert-box">
+                    <strong>最重要：</strong> 3人目のヒーロー枠はルーンツリー「指揮のルーン」で約<strong>150,000ゴールド</strong>が必要です。序盤で合成にゴールドを使わず、錬金術で貯金して最優先で解放しましょう。
+                </div>
+
+                <h3 id="step1">最初の1〜3時間：インストール〜2人編成</h3>
                 <div class="info-box">
                     <ol>
-                        <li><strong>初期職業の選択：</strong> プリースト（無料DLC導入必須）またはレンジャーで開始します。プリーストの「ヒール」で自身の耐久を高め、レンジャーの「連射」は序盤の周回速度を劇的に高めます。</li>
-                        <li><strong>装備の更新とスキル振り：</strong> アクティブスキルにポイントを全振りします。防具は「防御力（Armor）」を最優先。HPよりも防御力が高い方が序盤の被ダメージを1に抑えやすくなります。</li>
-                        <li><strong>ルーン「指揮のルーン」の解放：</strong> ゴールドが1300貯まったら、即座にルーン画面を下方向に進め、「指揮のルーン」を解放します。これでヒーロー枠が2枠になります。</li>
-                        <li><strong>2人目の編成：</strong> 前衛にプリースト、後衛にレンジャー（またはソーサラー）を配置します。この陣形が完成すれば、Act 1-10のボス「オーク・チーフテン」までは完全放置で突破可能です。</li>
-                        <li><strong>ソウルストーンの確保：</strong> Actボスに挑むためのソウルストーンは、通常の雑魚敵から0.5%の確率でドロップします。1-9を周回して集めましょう。</li>
+                        <li><strong>初期クラスの選択：</strong> ナイト（耐久重視・初心者向け）かレンジャー（周回速度重視）で開始。プリーストは無料DLC入手後、<strong>2人目</strong>として編成に加えます。</li>
+                        <li><strong>スキルは習得後に装備スロットへセット：</strong> スキルポイントを振っただけでは効果がありません。レベルアップのたびにスキル画面で装備することを忘れずに。</li>
+                        <li><strong>全スロットに装備を付ける：</strong> 武器・防具・アクセサリーすべて埋めるだけで火力・耐久が大幅アップします。</li>
+                        <li><strong>ルーン「指揮のルーン」（1つ目）を解放：</strong> 約1,300ゴールドで2人目のヒーロー枠が開きます。すぐにプリーストを編成に加えましょう。</li>
+                        <li><strong>キューブは錬金術モードで運用：</strong> Lv4で解放。不要装備は合成せず錬金術でゴールド化。序盤の金策の柱です。</li>
+                        <li><strong>壁に当たったらポータルで戻る：</strong> 右下の青いポータルアイコンで前のステージに戻り、装備とレベルを稼いでから再挑戦。</li>
                     </ol>
                 </div>
 
-                <h3 id="step2">Day 4〜7：キューブ解放と金策ダッシュ</h3>
-                <p>中盤以降は、装備のレアリティが攻略のすべてを握ります。Lv20を超えたあたりから被ダメージが跳ね上がるため、キューブ機能をフル活用します。</p>
+                <h3 id="step2">3〜10時間：3人編成とアクト1突破</h3>
                 <ul>
-                    <li><strong>錬金術による金策：</strong> 使わない装備は合成（Synthesis）せず、錬金術（Alchemy）でゴールドに変換します。これが序盤の主要な金策です。</li>
-                    <li><strong>覚醒のルーンと3枠目の解放：</strong> 50,000ゴールドを貯めて「覚醒のルーン（スキル装備枠+1）」を解放。その後、150,000ゴールドを貯めて2つ目の「指揮のルーン」を解放し、パーティを3人にします。ナイト、プリースト、レンジャーの3人構成が鉄板です。</li>
-                    <li><strong>マーケットを活用したスキップ技：</strong> Steam交易船（キューブLv10で解放）を開き、マーケットからLv40以上のレジェンダリー武器を数十円（リアルマネー）で購入します。これを錬金術にかけると約14万ゴールドになり、序盤のルーン解放を一瞬で終わらせることができます（通称：課金ブースト）。</li>
+                    <li><strong>150,000Gを貯めて3人目の枠を解放：</strong> ナイト＋プリースト＋レンジャーの鉄板編成が完成。これ以降の進行速度が劇的に上がります。</li>
+                    <li><strong>覚醒のルーンを解放：</strong> 全ヒーローのスキル装備枠が+1。プリーストの「力の祝福」など第2スキルが使えるようになり、火力が跳ね上がります。</li>
+                    <li><strong>ぜんまいのルーンで宝箱自動開封：</strong> 放置プレイの効率が格段に向上。必ず早めに解放しましょう。</li>
+                    <li><strong>ソウルストーン：</strong> アクトボス挑戦に必要。ボス撃破に成功した時のみ消費され、<strong>失敗しても消費されません</strong>。</li>
+                    <li><strong>各アクトは普通難易度をクリアしてから次へ：</strong> 難易度を急いで上げると装備不足で壁にぶつかります。普通をしっかりクリアしてから悪夢へ。</li>
+                </ul>
+
+                <h3>序盤でやってはいけないこと</h3>
+                <ul>
+                    <li>白（コモン）装備を序盤で合成に使い切る（後のクラフト素材として必要）</li>
+                    <li>ルーン解放前に高額合成や装飾にゴールドを浪費する</li>
+                    <li>オフライン放置だけに頼る（宝箱が落ちないため装備が止まる）</li>
+                    <li>レベル差10以上の低レベルステージを長時間周回（経験値・ドロップペナルティ）</li>
                 </ul>
             </section>
 
+            <section id="runes">
+                <h2>2. ルーン解放優先度・コスト一覧</h2>
+                <p>ルーンツリーは<strong>ゴールドで購入する永久強化</strong>です。一度解放すると取り消せないため、序盤のゴールドの使い道が攻略の分岐点になります。Lv3で解放されます。</p>
+
+                <div class="success-box">
+                    <strong>序盤の推奨解放順：</strong> 指揮のルーン（1つ目）→ 指揮のルーン（2つ目・3人枠）→ 覚醒のルーン → ぜんまいのルーン → 安息のルーン → 解放のルーン → 探索のルーン
+                </div>
+
+                <h3>ルーンツリーの方向と役割</h3>
+                <table>
+                    <thead>
+                        <tr><th>方向</th><th>主な内容</th><th>優先度</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>南（下）</strong></td><td>指揮のルーン（編成枠）、覚醒のルーン（スキル枠）</td><td><span class="badge bg-red">最優先</span></td></tr>
+                        <tr><td><strong>北東</strong></td><td>ぜんまいのルーン（自動開封）、探索のルーン（ドロップ率UP）</td><td><span class="badge bg-tier">高</span></td></tr>
+                        <tr><td><strong>北西</strong></td><td>富のルーン（ゴールド獲得量UP）</td><td>中</td></tr>
+                        <tr><td><strong>西</strong></td><td>経験値・キューブ経験値UP</td><td>中</td></tr>
+                        <tr><td><strong>東</strong></td><td>保管のルーン（スタッシュ拡張）</td><td>中〜高</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>重要ルーンの効果とコスト</h4>
+                <table>
+                    <thead>
+                        <tr><th>優先度</th><th>ルーン名（英語名）</th><th>効果</th><th>目安コスト</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>指揮のルーン</strong> (Rune of Command)</td><td>ヒーロー編成枠+1（2人目）</td><td>約 1,300 G</td></tr>
+                        <tr><td>2</td><td><strong>指揮のルーン</strong> (2つ目)</td><td>ヒーロー編成枠+1（3人目）</td><td>累計 約 150,000 G</td></tr>
+                        <tr><td>3</td><td><strong>覚醒のルーン</strong> (Rune of Awakening)</td><td>全ヒーローのスキル装備枠+1</td><td>約 50,000 G</td></tr>
+                        <tr><td>4</td><td><strong>ぜんまいのルーン</strong> (Rune of the Mainspring)</td><td>通常宝箱の自動開封</td><td>約 85,000 G</td></tr>
+                        <tr><td>5</td><td><strong>安息のルーン</strong> (Rune of Repose)</td><td>オフライン報酬（ゴールド・経験値）の解放</td><td>—</td></tr>
+                        <tr><td>6</td><td><strong>解放のルーン</strong> (Rune of Opening)</td><td>右クリックで宝箱一括開封</td><td>—</td></tr>
+                        <tr><td>7</td><td><strong>探索のルーン</strong> (Rune of Exploration)</td><td>宝箱ドロップ率UP・ボス撃破ゴールドUP</td><td>—</td></tr>
+                        <tr><td>—</td><td><strong>保管のルーン</strong></td><td>スタッシュ（倉庫）1ページ追加</td><td>約 300,000 G</td></tr>
+                    </tbody>
+                </table>
+                <p>※コストはルーンツリー上の累計目安です。パッチで変動する場合があります。</p>
+            </section>
+
+            <section id="chests">
+                <h2>3. 宝箱システム完全攻略（最重要）</h2>
+                <p>宝箱は装備・素材の<strong>最大の供給源</strong>です。TBHの進行速度は宝箱の管理術で大きく左右されます。2026年6月時点でもコミュニティで最も議論される攻略テーマの一つです。</p>
+
+                <div class="alert-box">
+                    <strong>注意：</strong> オフライン中（Steamを閉じている状態）は宝箱が<strong>一切ドロップしません</strong>。背景でゲームを起動したままのAFKプレイのみ、宝箱ドロップが発生します。
+                </div>
+
+                <h3>宝箱の基本ルール</h3>
+                <ul>
+                    <li><strong>ステージごとに宝箱レベルが決まっている：</strong> ステージの敵レベルに応じた装備が入ります。</li>
+                    <li><strong>クールダウン（CD）あり：</strong> 同じレベル帯の宝箱にはドロップ後にCDが発生（白系約6分、青系約9分）。同じステージを長時間回すと効率が落ちます。</li>
+                    <li><strong>インベントリ上限あり：</strong> 宝箱はインベントリに溜まります。満杯になるとドロップが止まるため、開封タイミングの管理が重要。</li>
+                    <li><strong>アクトボスは確定ドロップ：</strong> 落ちない場合はメールを確認し、10秒待ってから更新ボタンを押してください。</li>
+                </ul>
+
+                <h3 id="chest-rotation">宝箱ローテーション術（効率最大化）</h3>
+                <div class="info-box">
+                    <ol>
+                        <li><strong>白宝箱を自動開封OFFで溜める</strong> → インベントリが満杯になったら自動開封ONで一気に処理。</li>
+                        <li><strong>青宝箱狙いはステージをローテーション：</strong> 異なる宝箱レベルのステージを2〜3種類交互に周回し、個別CDを回避。報告ではドロップ数が約3倍に増えるケースも。</li>
+                        <li><strong>ぜんまいのルーンで自動開封を解放</strong>して、放置中もドロップが回り続ける状態を維持。</li>
+                        <li><strong>ドロップが止まったら</strong>別レベル帯のステージに切り替える。</li>
+                    </ol>
+                </div>
+
+                <h3 id="chest-levels">ステージ別宝箱レベル表（主要ステージ）</h3>
+                <table>
+                    <thead>
+                        <tr><th>ステージ</th><th>難易度</th><th>宝箱レベル</th><th>用途</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1-1</td><td>普通</td><td>Lv1</td><td>序盤・白宝箱埋め</td></tr>
+                        <tr><td>1-4</td><td>普通</td><td>Lv5</td><td>序盤周回</td></tr>
+                        <tr><td>1-8</td><td>普通</td><td>Lv10</td><td>アクト1終盤</td></tr>
+                        <tr><td>1-9</td><td>普通</td><td>—</td><td>経験値効率・ソウルストーン周回</td></tr>
+                        <tr><td>2-3</td><td>普通</td><td>Lv15</td><td>中盤入り</td></tr>
+                        <tr><td>2-8</td><td>普通</td><td>Lv20</td><td>火炎耐性が必要な難所</td></tr>
+                        <tr><td>3-6</td><td>普通</td><td>—</td><td>中盤の壁（火炎ダメージ対策必須）</td></tr>
+                        <tr><td>3-8</td><td>普通</td><td>Lv30</td><td>アクト3終盤</td></tr>
+                        <tr><td>1-9</td><td>悪夢</td><td>Lv40</td><td>高難易度入り</td></tr>
+                        <tr><td>3-5</td><td>悪夢</td><td>Lv50</td><td>中〜終盤</td></tr>
+                        <tr><td>2-5</td><td>地獄</td><td>Lv65</td><td>終盤装備</td></tr>
+                        <tr><td>1-3</td><td>トーメント</td><td>Lv80</td><td>エンドコンテンツ</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>宝箱トラブル時の対処</h3>
+                <ul>
+                    <li>オプション → <strong>「インベントリ問題解決」</strong>ボタンを試す</li>
+                    <li>ゲーム内メール（右上のメールアイコン）を確認 → 10秒待機 → 更新</li>
+                    <li>Steamインベントリに宝箱が滞留している場合は、メールから受け取る</li>
+                </ul>
+            </section>
+
+            <section id="offline">
+                <h2>4. オフライン vs AFK（背景プレイ）の違い</h2>
+                <p>他の放置RPG経験者が最もハマりやすい罠がこれです。TBHでは<strong>「ゲームを閉じたオフライン」と「起動したままのAFK」は全く別物</strong>です。</p>
+
+                <table>
+                    <thead>
+                        <tr><th>状態</th><th>ゴールド・経験値</th><th>宝箱ドロップ</th><th>おすすめ度</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>AFK（ゲーム起動中）</strong></td><td>◎ 通常通り</td><td>◎ 通常通り</td><td><span class="badge bg-rank1">最推奨</span></td></tr>
+                        <tr><td><strong>オフライン（Steam終了）</strong></td><td>△ 安息のルーン解放後に一部獲得</td><td>✕ ゼロ</td><td>補助的にのみ</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <strong>効率的なプレイスタイル</strong>
+                    <ul>
+                        <li>日中はPCで作業しながらゲームを起動したまま放置（20〜30分のアクティブセッションでも十分）</li>
+                        <li>ぜんまいのルーンで自動開封をONにし、自動リトライも設定</li>
+                        <li>就寝前など長時間離れる時のみオフライン報酬を活用（装備は進まない点に注意）</li>
+                        <li>オフラインだけに頼ると装備・素材の進行が大きく遅れます</li>
+                    </ul>
+                </div>
+            </section>
+
             <section id="classes">
-                <h2>2. 最強キャラランキング＆全6クラス完全ビルドガイド</h2>
-                <p>Ver 1.00.07環境における全6クラスの詳細な評価、役割、そしてレベル100（カンスト）を見据えた最強ビルドの振り方を解説します。上位スキルは下位スキルにポイントを振らないと解放されない仕様に注意してください。</p>
+                <h2>5. 全6クラス評価・最強パーティ編成</h2>
+                <p>6クラス中、基本無料はナイト・レンジャー・ソーサラー。プリーストは無料DLC、ハンター・スレイヤーは有料DLC（各$3.99前後）です。<strong>クラスを解放してもヒーロー枠は増えません</strong>。枠はルーンの「指揮のルーン」でのみ増加します。</p>
 
-                <h3 id="class-priest"><span class="badge bg-rank1">1位</span> プリースト (Priest) - 回復・タンクの絶対王者</h3>
-                <p>全プレイヤーが「パーティに絶対1人は必須」と口を揃える最強クラス。高難易度（Hell, Inferno）では敵の火力が即死級になるため、プリーストのバフと回復がなければ放置狩りすら成立しません。</p>
+                <h3>推奨パーティ編成（序盤〜中盤の鉄板）</h3>
+                <div class="success-box">
+                    <strong>ナイト（前衛タンク）＋ プリースト（回復・バフ）＋ レンジャー（後衛DPS）</strong><br>
+                    ナイトが敵の攻撃を引き受け、プリーストが回復とパーティ火力バフ、レンジャーが高速DPSを担当。生存力と火力のバランスが最も優れた編成です。雑魚の多いステージではレンジャーの代わりにソーサラー（AoE）に入れ替えも有効。
+                </div>
+
+                <table>
+                    <thead>
+                        <tr><th>クラス</th><th>役割</th><th>入手方法</th><th>序盤評価</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>ナイト</strong> (Knight)</td><td>前衛タンク</td><td>無料</td><td><span class="badge bg-rank1">S</span> 初心者に最適</td></tr>
+                        <tr><td><strong>プリースト</strong> (Priest)</td><td>回復・バフ・サブタンク</td><td>無料DLC</td><td><span class="badge bg-rank1">S</span> 必須級</td></tr>
+                        <tr><td><strong>レンジャー</strong> (Ranger)</td><td>遠距離DPS・周回</td><td>無料</td><td><span class="badge bg-rank1">S</span> 周回最強</td></tr>
+                        <tr><td><strong>ソーサラー</strong> (Sorcerer)</td><td>範囲魔法DPS</td><td>無料</td><td><span class="badge bg-rank2">A</span> 雑魚掃討</td></tr>
+                        <tr><td><strong>ハンター</strong> (Hunter)</td><td>ボス特化DoT DPS</td><td>有料DLC</td><td><span class="badge bg-rank2">A</span> ボス戦向け</td></tr>
+                        <tr><td><strong>スレイヤー</strong> (Slayer)</td><td>超高火力バーサーカー</td><td>有料DLC</td><td><span class="badge bg-rank3">B</span> 高難易度では脆い</td></tr>
+                    </tbody>
+                </table>
+
+                <h3 id="class-knight">ナイト (Knight) — 不動のメインタンク</h3>
+                <p>挑発と自己バフで前線を守る近接タンク。初心者が最初に選ぶクラスとして最も安全です。</p>
                 <ul>
-                    <li><strong>役割：</strong> メインヒーラー、サブタンク、バッファー</li>
-                    <li><strong>長所：</strong> 「ヒール」による持続回復。「サンクチュアリ」による範囲無敵化。「力の祝福」によるパーティ全体のDPS底上げ。防御力を積めばナイトの代わりに壁役もこなせる万能性。</li>
-                    <li><strong>短所：</strong> 自身の攻撃力は皆無に等しい。</li>
-                    <li><strong>エンドコンテンツ用ビルド（100pt配分）：</strong>
-                        <ul>
-                            <li>ヒール (5/5), 力の祝福 (5/5), 天上の怒り (5/5)</li>
-                            <li>クールダウン短縮 (10/10), 詠唱速度強化 (10/10)</li>
-                            <li>ダメージ吸収強化 (10/10), 全属性耐性強化 (10/10)</li>
-                            <li>余りは「体力強化」に全振り。</li>
-                        </ul>
-                    </li>
+                    <li><strong>長所：</strong> 高い防御力とヘイト集め。シールドチャージで敵の攻撃を引き付け、鉄壁の構えで被ダメージを大幅カット。</li>
+                    <li><strong>短所：</strong> ナイト＋プリーストの2タンク編成は周回速度が落ちる。</li>
+                    <li><strong>装備優先：</strong> 防御力、ブロック率、ダメージ軽減、全属性耐性。</li>
                 </ul>
 
-                <h3 id="class-hunter"><span class="badge bg-rank2">2位</span> ハンター (Hunter) - 対ボス持続ダメージの鬼</h3>
-                <p>有料DLC（$3.99）で追加される遠距離DPS。毒や出血によるDoT（Damage over Time）デバフを敵に付与し、ボスの莫大なHPを割合で削り取ります。</p>
+                <h3 id="class-priest">プリースト (Priest) — 回復・バフの要</h3>
+                <p>無料DLCで入手できる最重要クラス。高難易度では回復とバフなしでは進行が困難になります。</p>
                 <ul>
-                    <li><strong>役割：</strong> ボス専用DPS、デバッファー</li>
-                    <li><strong>長所：</strong> スキル「エクスプロージョンボルト」と「クイックローダー」のシナジーが凶悪。攻撃速度を積むほどDoTの重複スタックが溜まり、ボス戦の討伐時間がレンジャーの半分以下になります。</li>
-                    <li><strong>短所：</strong> 雑魚が大量に湧くステージでは殲滅力が落ちる。</li>
-                    <li><strong>エンドコンテンツ用ビルド：</strong> クリティカル率強化 (10/10)、クリティカルダメージ強化 (10/10)、火炎ダメージ強化 (10/10)を最優先。</li>
+                    <li><strong>長所：</strong> ヒールによる持続回復、力の祝福（パーティ攻撃力+90%）、サンクチュアリ（範囲回復/無敵）。防御を積めばサブタンクも可能。</li>
+                    <li><strong>短所：</strong> 自身の攻撃力は低い。なぜか近接で戦うためHPも必要。</li>
+                    <li><strong>装備優先：</strong> HP、防御力、詠唱速度、クールダウン短縮。</li>
                 </ul>
 
-                <h3 id="class-knight"><span class="badge bg-rank3">3位</span> ナイト (Knight) - 不動のメインタンク</h3>
-                <p>初期から使用可能な近接タンク。挑発スキルと自己バフでパーティの壁となります。</p>
+                <h3 id="class-ranger">レンジャー (Ranger) — 周回の王者</h3>
+                <p>攻撃速度と貫通を活かした遠距離DPS。序盤〜中盤の周回効率は全クラス中トップクラスです。</p>
                 <ul>
-                    <li><strong>役割：</strong> メインタンク</li>
-                    <li><strong>長所：</strong> 「シールドチャージ」で敵のヘイトを集め、「鉄壁の構え」で被ダメージを劇的にカットします。ブルーゴーレム（ペット）を装備させた際の硬さは要塞そのもの。</li>
-                    <li><strong>短所：</strong> プリーストと同時に編成すると、パーティ3枠のうち2枠が火力不足となり、周回速度が著しく低下します。</li>
-                    <li><strong>エンドコンテンツ用ビルド：</strong> ブロック率強化 (10/10)、ダメージ軽減強化 (10/10)、全属性耐性強化 (10/10)。</li>
+                    <li><strong>長所：</strong> 連射・ピアシングアロー（貫通矢）による高回転ダメージ。後衛配置で安全に火力を出せる。</li>
+                    <li><strong>短所：</strong> 終盤は敵の防御力が上がり、貫通・装甲貫通ステータスが必須に。</li>
+                    <li><strong>装備優先：</strong> 攻撃速度 &gt; 物理ダメージ &gt; 貫通 &gt; クリティカル。</li>
                 </ul>
 
-                <h3 id="class-ranger"><span class="badge bg-role">4位</span> レンジャー (Ranger) - 手数の鬼・序盤周回王</h3>
-                <p>弓矢による超高速・遠距離攻撃を得意とする初期クラス。序盤から中盤にかけてのファーム（周回）効率は全クラスで圧倒的トップです。</p>
+                <h3 id="class-sorcerer">ソーサラー (Sorcerer) — 範囲殲滅の魔法使い</h3>
                 <ul>
-                    <li><strong>長所：</strong> 「連射」と「ピアシングアロー（貫通矢）」による直線上の敵の殲滅。クリティカル発生時の火力期待値が非常に高い。</li>
-                    <li><strong>短所：</strong> Act 3以降の敵の防御力が上がると、1発のダメージが通らなくなりDPSが急減する（装甲貫通ステータスが必須になる）。</li>
+                    <li><strong>長所：</strong> ファイアボール・メテオストライク等のAoEで雑魚密集ステージを高速クリア。経験値効率を上げたい時に編成へ。</li>
+                    <li><strong>短所：</strong> ボス単体戦ではDPSが落ちる。HP・防御が最低クラスのためタゲを取られると即死。</li>
+                    <li><strong>装備優先：</strong> 魔法攻撃力、詠唱速度、クールダウン短縮、全属性ダメージ。</li>
                 </ul>
 
-                <h3 id="class-sorcerer"><span class="badge bg-role">5位</span> ソーサラー (Sorcerer) - 画面一掃のAoE特化</h3>
-                <p>強力な範囲魔法で画面全体の敵を焼き尽くす魔法使い。</p>
+                <h3 id="class-hunter">ハンター (Hunter) — ボス特化DoTアタッカー</h3>
                 <ul>
-                    <li><strong>長所：</strong> 「ファイアボール」から派生する「メテオストライク」や「フレイムヒュドラ」により、雑魚が密集する「○-9」ステージでの経験値効率を限界まで引き上げます。</li>
-                    <li><strong>短所：</strong> ボスなどの単体相手にはDPSが激減する。また、HPと防御力が全クラスで最も低く、タゲを取られると一瞬で溶けます。</li>
+                    <li><strong>長所：</strong> 毒・出血のDoTでボスのHPを効率的に削る。エクスプロージョンボルトとクイックローダーのシナジーが強力。</li>
+                    <li><strong>短所：</strong> 雑魚の多いステージでは殲滅力不足。有料DLCが必要。</li>
+                    <li><strong>装備優先：</strong> クリティカル率、クリティカルダメージ、攻撃速度、火炎ダメージ。</li>
                 </ul>
 
-                <h3 id="class-slayer"><span class="badge bg-role">6位</span> スレイヤー (Slayer) - 諸刃の剣・超火力アタッカー</h3>
-                <p>有料DLC（$3.99）で追加。自身の防御力を代償にして火力を引き上げるバーサーカーです。</p>
+                <h3 id="class-slayer">スレイヤー (Slayer) — 諸刃の火力型</h3>
                 <ul>
-                    <li><strong>長所：</strong> 「ブラッドラスト」発動中の単体火力・範囲火力は理論上全クラス最強。</li>
-                    <li><strong>短所：</strong> 防御力が紙になるため、難易度Inferno以上ではプリーストの回復が追いつかず即死します。現状のメタでは運用が難しいため最下位。</li>
+                    <li><strong>長所：</strong> ブラッドラスト発動時の火力は理論上全クラス最強。</li>
+                    <li><strong>短所：</strong> 防御力が紙のため高難易度（地獄・トーメント）ではプリーストの回復が追いつかず即死しやすい。</li>
+                </ul>
+
+                <h3>高難易度での装備方針</h3>
+                <p>普通難易度まではバランス型でも問題ありませんが、<strong>悪夢以上では専門特化が必須</strong>です。DPSは攻撃速度・クリティカルに全振り、タンクは防御・HP・ダメージ軽減に全振り。中途半端なステータス配分は壁の原因になります。</p>
+            </section>
+
+            <section id="skills">
+                <h2>6. クラス別スキルビルド推奨</h2>
+                <p>スキルポイントは<strong>返還（リセット）可能</strong>ですが、序盤から方針を持って振ると後の振り直しが楽になります。スキルは習得後、必ず<strong>装備スロットにセット</strong>してください。</p>
+
+                <h3>レンジャー (Ranger)</h3>
+                <ul>
+                    <li><strong>Lv1〜：</strong> 連射（Rapid Shot）をメインに。最初は攻撃速度より<strong>フラットダメージ</strong>を優先（攻撃速度ボーナスは%なので基礎火力が低いと効果薄）。</li>
+                    <li><strong>中盤：</strong> ピアシングアロー（貫通矢）を取得。単体に集中するスキルを優先（複数敵に分散するスキルは火力が割れる）。</li>
+                    <li><strong>第2スキル枠解放後：</strong> リセットして矢の雨（Rain of Arrows）に切り替え、クリティカル率を積む。</li>
+                </ul>
+
+                <h3>ナイト (Knight)</h3>
+                <ul>
+                    <li><strong>最初：</strong> 体力強化（Health Boost）に8ポイント → アクティブスキル1 → 攻撃力1。</li>
+                    <li><strong>Lv10以降：</strong> 防御力強化（Armor Boost）を最優先。ナイトの防御が上がるほどパーティ全体の生存時間が延び、レンジャーのDPSが活きる。</li>
+                </ul>
+
+                <h3>プリースト (Priest)</h3>
+                <ul>
+                    <li><strong>最初：</strong> ヒール（Heal）に1ポイント → HP強化（プリーストは近接で殴られるため）。</li>
+                    <li><strong>第2スキル枠解放後：</strong> 力の祝福（Blessing of Strength）を最優先。パーティ全体の攻撃力+90%は破格のバフ。</li>
+                </ul>
+
+                <h3>ソーサラー (Sorcerer)</h3>
+                <ul>
+                    <li>ファイアボール系を軸に、雑魚掃討用のAoEスキルを優先。ボス戦用に単体火力スキルも確保。</li>
                 </ul>
             </section>
 
             <section id="world">
-                <h2>3. アクト別攻略チャート・経験値効率完全網羅</h2>
-                <p>ゲーム内の経験値システムは、<strong>「現在のキャラクターレベル+6」の敵を倒すのが最高効率</strong>（最大でもレベル差9以内）となるように設定されています。これ以上離れると強烈な経験値減衰（ペナルティ）が発生します。</p>
+                <h2>7. アクト別攻略・経験値効率表</h2>
+                <p>経験値効率の基本ルールは<strong>「現在のキャラレベル+6程度の敵を倒すのが最高効率」</strong>です。レベル差が10以上開くと経験値・ドロップにペナルティが発生します。</p>
 
-                <h4>各アクトのボスとドロップ傾向</h4>
+                <h3>4つの難易度</h3>
+                <table>
+                    <thead>
+                        <tr><th>難易度</th><th>英語名</th><th>特徴</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>普通</td><td>Normal</td><td>最初にクリアすべき難易度。各アクトを普通でクリアしてから次へ</td></tr>
+                        <tr><td>悪夢</td><td>Nightmare</td><td>敵のステータス上昇。属性対策が必要に</td></tr>
+                        <tr><td>地獄</td><td>Hell</td><td>大幅な数値インフレ。装備の専門特化が必須</td></tr>
+                        <tr><td>トーメント</td><td>Torment</td><td>エンドコンテンツ。最高レベルの宝箱とレア装備</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>各アクトのボスと攻略ポイント</h4>
                 <ul>
                     <li><strong>Act 1：忘却の森（適正Lv 1〜15）</strong>
                         <ul>
-                            <li><strong>難所：</strong> 1-8（毒を持つスパイダーが大量発生。回復が追いつかないと厳しい。）</li>
-                            <li><strong>ボス「オーク・チーフテン」：</strong> 物理攻撃のみ。ナイトのシールドで完封可能。</li>
-                            <li><strong>推奨ファーム：</strong> 1-4（コウモリ狙い）、1-9（経験値効率最高）</li>
+                            <li><strong>難所：</strong> 1-8（毒スパイダー大量発生。回復が追いつかないと厳しい）</li>
+                            <li><strong>ボス「オーク・チーフテン」：</strong> 物理攻撃のみ。ナイトのシールドで対応可能</li>
+                            <li><strong>推奨周回：</strong> 1-4（序盤）、1-9（経験値・ソウルストーン）</li>
                         </ul>
                     </li>
                     <li><strong>Act 2：焦熱の荒野（適正Lv 15〜35）</strong>
                         <ul>
-                            <li><strong>難所：</strong> 2-8（炎の精霊が出現。火炎ダメージが異常なため、防具に「ルビー」を装飾して火炎耐性を上げないと全滅ループに陥ります）</li>
-                            <li><strong>ボス「ファイヤースピリット・キング」：</strong> 全体に火炎属性のDoTダメージ。プリーストの全体回復が必須。</li>
-                            <li><strong>推奨ファーム：</strong> 2-4（巨大ハエ狙い）、2-9（中盤の金策・経験値の聖地）</li>
+                            <li><strong>難所：</strong> 2-8（炎の精霊。火炎耐性がないと全滅ループ）</li>
+                            <li><strong>対策：</strong> 防具にルビー（Ruby）を装飾して火炎耐性を確保</li>
+                            <li><strong>推奨周回：</strong> 2-4、2-9（中盤の金策・経験値の聖地）</li>
                         </ul>
                     </li>
                     <li><strong>Act 3：虚無の深淵（適正Lv 35〜50+）</strong>
                         <ul>
-                            <li><strong>難所：</strong> 3-5以降（敵が物理無効・魔法無効のバリアをランダムで張るため、物理と魔法のバランス編成が求められる）</li>
-                            <li><strong>ボス「ヴォイド・リーパー」：</strong> 即死攻撃（HP100%ダメージ）を使用。ペットの「幽霊（即死回避）」が事実上のクリア必須条件。</li>
-                            <li><strong>推奨ファーム：</strong> 3-9（エンドコンテンツ。全レアリティのドロップ判定あり）</li>
+                            <li><strong>難所：</strong> 3-5以降（物理/魔法無効バリアを張る敵が出現。バランス編成が必要）</li>
+                            <li><strong>3-6「燃える峡谷」：</strong> 中盤最大の壁。火炎耐性（Minor Rubyアクセ推奨）＋ナイト＋プリースト＋レンジャーで突破</li>
+                            <li><strong>ボス「ヴォイド・リーパー」：</strong> 即死攻撃あり。ペット「ゴースト」の即死回避が有効</li>
+                            <li><strong>推奨周回：</strong> 3-9（エンドコンテンツ入り口）</li>
                         </ul>
                     </li>
                 </ul>
 
-                <h4>レベル帯別・最高効率ファーム表</h4>
+                <h4>レベル帯別・効率周回表</h4>
                 <table>
                     <thead>
-                        <tr>
-                            <th>キャラLv</th>
-                            <th>周回ステージ</th>
-                            <th>時給経験値(目安)</th>
-                            <th>目標・備考</th>
-                        </tr>
+                        <tr><th>キャラLv</th><th>周回ステージ</th><th>目標</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Lv 1 〜 10</td><td>Act 1-4 / 1-9</td><td>15,000 EXP</td><td>周回速度200秒以内を維持。コウモリ泥狙い。</td></tr>
-                        <tr><td>Lv 11 〜 20</td><td>Act 2-4</td><td>45,000 EXP</td><td>巨大ハエのドロップ。レア装備への移行。</td></tr>
-                        <tr><td>Lv 21 〜 30</td><td>Act 2-9</td><td>120,000 EXP</td><td>ルビー装飾必須。ここからレジェンダリーが落ち始める。</td></tr>
-                        <tr><td>Lv 31 〜 40</td><td>Act 3-4</td><td>350,000 EXP</td><td>敵HP激増。キューブでのクラフト武器が必須。</td></tr>
-                        <tr><td>Lv 41 〜 50+</td><td>Act 3-9</td><td>800,000 EXP+</td><td>最終狩場。イモータル・アルカナレアリティの厳選開始。</td></tr>
+                        <tr><td>Lv 1〜10</td><td>普通 1-4 / 1-9</td><td>周回200秒以内を維持。全スロット装備を更新</td></tr>
+                        <tr><td>Lv 11〜20</td><td>普通 2-4</td><td>レア装備への移行。ルビー装飾の準備</td></tr>
+                        <tr><td>Lv 21〜30</td><td>普通 2-9</td><td>レジェンダリー装備が落ち始める</td></tr>
+                        <tr><td>Lv 31〜40</td><td>普通 3-4</td><td>キューブクラフト武器が必須に</td></tr>
+                        <tr><td>Lv 41〜50+</td><td>普通 3-9 / 悪夢以降</td><td>イモータル・アルカナの厳選開始</td></tr>
                     </tbody>
                 </table>
             </section>
 
             <section id="cube">
-                <h2>4. Hero-dric Cube（キューブ）システム完全解析</h2>
-                <p>Ver 1.00.07で復元された「キューブ」は、不要なアイテムの処理から最強装備の作成までを担う中核システムです。キューブ自身のレベルを上げることで高度な機能が解放されます。</p>
+                <h2>8. Hero-dric Cube（8機能）完全解析</h2>
+                <p>キューブはLv4で解放される中核システムです。デフォルトは合成モードですが、序盤は<strong>錬金術（Alchemy）に切り替えてゴールドを稼ぐ</strong>のが定石。キューブレベルを上げると8つの機能が順次解放されます。</p>
 
-                <h3 id="cube-synthesis">合成 (Synthesis) の確率と仕様</h3>
-                <p>同じレアリティのアイテムを複数（基本3個〜5個）掛け合わせることで、ゲージが蓄積し、一定確率で上位レアリティに昇格するか、同レアリティの別アイテムが生成されます。<br>
-                ※注意：合成したアイテムは消滅します。残したい武器は <code>ALT + 左クリック</code> でロックをかけてください。</p>
-                <ul>
-                    <li>コモン5個 → 100%でアンコモン生成</li>
-                    <li>アンコモン5個 → 100%でレア生成</li>
-                    <li>レア5個 → <strong>15%の確率でレジェンダリー</strong>、85%で同レアの別アイテム</li>
-                    <li>レジェンダリー5個 → <strong>3%の確率でイモータル</strong></li>
-                </ul>
-
-                <h3 id="cube-craft">クラフト (Crafting) と錬金術 (Alchemy)</h3>
-                <p>錬金術で不要なアイテムを分解すると、「赤の粉（攻撃系素材）」「青の粉（魔法系素材）」「緑の粉（防御系素材）」が得られます。これをベース武器と組み合わせて確定ステータスを付与するのがクラフトです。</p>
-                <ul>
-                    <li><strong>武器 + 赤の粉100個：</strong> 攻撃力+15% 付与</li>
-                    <li><strong>防具 + 緑の粉100個：</strong> 最大HP+20% 付与</li>
-                    <li><strong>アクセサリー（ボスドロ限定）の製作：</strong> キューブでのみクラフト可能な専用装備が存在します。</li>
-                </ul>
-
-                <h3 id="cube-deco">装飾 (Decoration) 宝石効果データ</h3>
-                <p>スロットが空いている装備に宝石（ジェム）をはめ込みます。除去は可能ですが、はめ込んだ宝石は破壊（消滅）するため慎重に行ってください。</p>
+                <h3>キューブの8機能一覧</h3>
                 <table>
                     <thead>
-                        <tr>
-                            <th>宝石の種類</th>
-                            <th>武器にはめた効果</th>
-                            <th>防具にはめた効果</th>
-                        </tr>
+                        <tr><th>機能</th><th>用途</th><th>解放タイミング</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>ルビー</strong> (Ruby)</td><td>火炎ダメージ追加</td><td>火炎耐性アップ（※Act2-8で必須）</td></tr>
-                        <tr><td><strong>サファイア</strong> (Sapphire)</td><td>冷気ダメージ追加（スロウ付与）</td><td>冷気耐性アップ</td></tr>
-                        <tr><td><strong>トパーズ</strong> (Topaz)</td><td>雷ダメージ追加</td><td>雷耐性アップ</td></tr>
-                        <tr><td><strong>エメラルド</strong> (Emerald)</td><td>クリティカルダメージ増加</td><td>毒耐性アップ</td></tr>
-                        <tr><td><strong>ダイヤモンド</strong> (Diamond)</td><td>全属性ダメージ増加</td><td>全属性耐性アップ（神話級レア）</td></tr>
+                        <tr><td><strong>錬金術 (Alchemy)</strong></td><td>不要アイテム → ゴールド</td><td>序盤最優先で使用</td></tr>
+                        <tr><td><strong>合成 (Synthesis)</strong></td><td>同レアリティ9個 → 上位レアリティ</td><td>中盤以降</td></tr>
+                        <tr><td><strong>クラフト (Crafting)</strong></td><td>素材から装備を作成（部位指定可能）</td><td>キューブLv上昇で解放</td></tr>
+                        <tr><td><strong>装飾 (Decoration)</strong></td><td>レア以上の装備に宝石をソケット</td><td>レア装備から</td></tr>
+                        <tr><td><strong>刻印 (Engraving)</strong></td><td>イモータル装備に刻印</td><td>イモータル装備から</td></tr>
+                        <tr><td><strong>铭文 (Inscription)</strong></td><td>アルカナ装備に铭文</td><td>アルカナ装備から</td></tr>
+                        <tr><td><strong>除去 (Removal)</strong></td><td>ソケットから宝石等を抽出（装備は外してから）</td><td>マーケット出品前に必須</td></tr>
+                        <tr><td><strong>マーケット連携</strong></td><td>Steamマーケットへの出品</td><td>キューブLv10</td></tr>
                     </tbody>
                 </table>
-            </section>
 
-            <section id="runes">
-                <h2>5. ルーンツリー解放コスト完全データベース</h2>
-                <p>ゴールドを支払って恒久的なパッシブバフを得るシステムです。一度取得したルーンはやり直しができない（リセット不可）ため、計画的な解放が求められます。</p>
+                <h3 id="cube-synthesis">合成 (Synthesis) のルール</h3>
+                <p>同じレアリティのアイテム<strong>9個</strong>を合成すると、上位レアリティに昇格するか、同レアリティの別アイテムが生成されます。合成レベルが低いと失敗時にレベルダウンする場合があるため、高レベル装備の合成前にキューブレベルを上げましょう。</p>
+                <ul>
+                    <li>コモン9個 → アンコモン</li>
+                    <li>アンコモン9個 → レア</li>
+                    <li>レア9個 → 一定確率でレジェンダリー</li>
+                    <li>レジェンダリー9個 → 一定確率でイモータル</li>
+                </ul>
+                <p>※合成前に <code>Alt + 左クリック</code> でアイテムをロック。錬金術の自動入力でも誤消費を防げます。</p>
 
-                <div class="info-box">
-                    <strong>【ルーンの伸ばす方向と特化ステータス】</strong>
-                    <ul>
-                        <li><strong>下（南）方向：編成・スキル枠（最重要）</strong></li>
-                        <li><strong>左上（北西）方向：ゴールド獲得量増加</strong></li>
-                        <li><strong>左（西）方向：経験値・キューブ経験値アップ</strong></li>
-                        <li><strong>右上（北東）方向：ドロップ率・宝箱自動開封</strong></li>
-                        <li><strong>右（東）方向：インベントリ枠（スタッシュ）拡張</strong></li>
-                    </ul>
-                </div>
+                <h3 id="cube-craft">クラフトと錬金術の使い分け</h3>
+                <ul>
+                    <li><strong>序盤：</strong> 錬金術でゴールド化 → ルーン解放に充てる</li>
+                    <li><strong>中盤：</strong> クラフトで部位指定の装備を作成。赤の粉（攻撃）、青の粉（魔法）、緑の粉（防御）を使用</li>
+                    <li><strong>白（コモン）素材は温存：</strong> 序盤で合成に使い切らない。後のクラフト・合成に必要</li>
+                </ul>
 
-                <h4>重要ルーンのコスト表</h4>
+                <h3 id="cube-deco">レアリティとソケット段階</h3>
                 <table>
                     <thead>
-                        <tr>
-                            <th>ルーン名</th>
-                            <th>効果</th>
-                            <th>必要累計ゴールド</th>
-                        </tr>
+                        <tr><th>レアリティ</th><th>ソケット</th><th>用途</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>指揮のルーン (1段階)</td><td>ヒーロー編成枠が2になる</td><td>1,300 G</td></tr>
-                        <tr><td>富のルーン (1段階)</td><td>ゴールド獲得量 +10%</td><td>2,500 G</td></tr>
-                        <tr><td>覚醒のルーン</td><td>各キャラのスキル装備枠が2になる</td><td>50,000 G</td></tr>
-                        <tr><td>自動開封のルーン</td><td>放置中、宝箱を自動で開ける</td><td>85,000 G</td></tr>
-                        <tr><td>指揮のルーン (2段階)</td><td>ヒーロー編成枠が3になる</td><td>150,000 G</td></tr>
-                        <tr><td>保管のルーン</td><td>倉庫（スタッシュ）が1ページ増える</td><td>300,000 G</td></tr>
+                        <tr><td class="rarity-common">コモン</td><td>—</td><td>錬金術・合成素材</td></tr>
+                        <tr><td class="rarity-uncommon">アンコモン</td><td>—</td><td>序盤装備更新</td></tr>
+                        <tr><td class="rarity-rare">レア</td><td>装飾 (Decoration)</td><td>宝石ソケット解放</td></tr>
+                        <tr><td class="rarity-legendary">レジェンダリー</td><td>—</td><td>ビルドの核。マーケット取引可能</td></tr>
+                        <tr><td class="rarity-immortal">イモータル</td><td>刻印 (Engraving)</td><td>エンドゲーム装備</td></tr>
+                        <tr><td class="rarity-arcana">アルカナ</td><td>铭文 (Inscription)</td><td>マーケット需要大</td></tr>
+                        <tr><td>ビヨンド / セレスティアル / ディバイン / コズミック</td><td>—</td><td>終盤チェイスレアリティ</td></tr>
                     </tbody>
                 </table>
+
+                <h4>宝石（装飾）効果一覧</h4>
+                <table>
+                    <thead>
+                        <tr><th>宝石</th><th>武器</th><th>防具</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>ルビー</strong> (Ruby)</td><td>火炎ダメージ追加</td><td>火炎耐性（Act2-8・3-6で必須）</td></tr>
+                        <tr><td><strong>サファイア</strong> (Sapphire)</td><td>冷気ダメージ（スロウ）</td><td>冷気耐性</td></tr>
+                        <tr><td><strong>トパーズ</strong> (Topaz)</td><td>雷ダメージ</td><td>雷耐性</td></tr>
+                        <tr><td><strong>エメラルド</strong> (Emerald)</td><td>クリティカルダメージ増</td><td>毒耐性</td></tr>
+                        <tr><td><strong>ダイヤモンド</strong> (Diamond)</td><td>全属性ダメージ増</td><td>全属性耐性</td></tr>
+                    </tbody>
+                </table>
+                <p>※宝石の除去は可能ですが、はめ込んだ宝石は破壊されます。マーケット出品前にRemoval機能で外しましょう。</p>
             </section>
 
             <section id="pets">
-                <h2>6. ペットシステムと進化・ドロップテーブル</h2>
-                <p>ペットはインベントリに所持しているだけ、または専用スロットに装備することでパーティ全体に強力なパッシブ効果を与えます。ドロップ率は一律で非常に低く（0.01%〜0.05%程度）、数日間の放置ファームが必要です。</p>
+                <h2>9. ペット図鑑・ドロップ場所</h2>
+                <p>ペットは所持または装備するだけでパーティ全体にパッシブ効果を付与します。ドロップ率は非常に低く（0.01%〜0.05%程度）、長期間の放置周回が必要です。サポーターパックDLCにはペット関連のボーナスも含まれます。</p>
 
                 <table>
                     <thead>
-                        <tr>
-                            <th>ペット名</th>
-                            <th>主なドロップ場所</th>
-                            <th>効果・特徴</th>
-                        </tr>
+                        <tr><th>ペット名</th><th>主なドロップ場所</th><th>効果・特徴</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>コウモリ (Bat)</strong></td><td>Act 1-8 付近</td><td>移動速度+10%、HP吸収(2%)。最序盤の生命線。</td></tr>
-                        <tr><td><strong>巨大ハエ (Giant Fly)</strong></td><td>Act 2-4 付近</td><td>攻撃速度+15%。レンジャーやハンターとの相性が抜群。</td></tr>
-                        <tr><td><strong>炎の精霊 (Fire Spirit)</strong></td><td>Act 2-8 付近</td><td>火炎属性ダメージ+20%、火炎耐性+30%。</td></tr>
-                        <tr><td><strong>ブルーゴーレム (Blue Golem)</strong></td><td>Act 3 序盤</td><td>防御力+40%、最大HP+20%。ナイトに持たせると不沈要塞と化す。</td></tr>
-                        <tr><td><strong>地獄のゴーレム (Hell Golem)</strong></td><td>難易度 Hell 以降</td><td>全属性耐性+50%、被ダメージの30%を反射。</td></tr>
-                        <tr><td><strong>幽霊 (Ghost)</strong></td><td>Act 3-9 等</td><td>回避率+20%、<strong>即死回避（CD: 60秒）</strong>。Act3ボスの突破に必須。</td></tr>
-                        <tr><td><strong>ドラゴン (Dragon)</strong></td><td>難易度 Torment 限定</td><td>全ステータス+50%、画面全体の敵に毎秒ブレスダメージ。本作の最終目標。</td></tr>
+                        <tr><td><strong>コウモリ (Bat)</strong></td><td>Act 1-8 付近</td><td>移動速度+10%、HP吸収2%。最序盤の生命線</td></tr>
+                        <tr><td><strong>巨大ハエ (Giant Fly)</strong></td><td>Act 2-4 付近</td><td>攻撃速度+15%。レンジャー・ハンターと相性抜群</td></tr>
+                        <tr><td><strong>炎の精霊 (Fire Spirit)</strong></td><td>Act 2-8 付近</td><td>火炎ダメージ+20%、火炎耐性+30%</td></tr>
+                        <tr><td><strong>ブルーゴーレム (Blue Golem)</strong></td><td>Act 3 序盤</td><td>防御力+40%、最大HP+20%。ナイトに最適</td></tr>
+                        <tr><td><strong>地獄のゴーレム (Hell Golem)</strong></td><td>地獄難易度以降</td><td>全属性耐性+50%、被ダメージ30%反射</td></tr>
+                        <tr><td><strong>ゴースト (Ghost)</strong></td><td>Act 3-9 等</td><td>回避率+20%、<strong>即死回避（CD:60秒）</strong>。Act3ボス対策</td></tr>
+                        <tr><td><strong>ドラゴン (Dragon)</strong></td><td>トーメント限定</td><td>全ステータス+50%、画面全体にブレスダメージ</td></tr>
                     </tbody>
                 </table>
             </section>
 
             <section id="market">
-                <h2>7. Steamマーケット金策・RMT経済学</h2>
-                <p>本作最大の魅力であり、同時に大きなリスクも伴うのがSteamコミュニティマーケットを通じたアイテムの売買（リアルマネー化）です。ゲームを放置して拾った超レアアイテムが、Steamウォレット残高に変わります。</p>
+                <h2>10. Steamマーケット活用法</h2>
+                <p>本作の大きな特徴が、Steamコミュニティマーケットを通じたアイテムの売買です。放置で拾ったレア装備がSteamウォレット残高に変わります。ただし<strong>Steam Guard（モバイル認証）の設定が必須</strong>です。</p>
 
                 <div class="alert-box">
-                    <strong>【最新アプデ情報】レア(Rare)以下の出品禁止措置</strong><br>
-                    サーバー負荷軽減のため、Ver 1.00.07より「Rare」以下の装備はマーケットに出品できなくなりました。現在は「Legendary」以上の厳選品のみが取引対象です。
+                    <strong>【重要】レア(Rare)以下はマーケット出品不可</strong><br>
+                    サーバー負荷軽減のため、レア以下の装備はマーケットに出品できません。取引対象は<strong>レジェンダリー以上</strong>の厳選品が中心です。
                 </div>
 
-                <h4>高く売れる（需要のある）アイテムの条件</h4>
+                <h3>マーケットの基本操作</h3>
                 <ul>
-                    <li><strong>ソーサラー用の「クールダウン短縮」特化杖：</strong> 放置ファームの効率に直結するため、廃人プレイヤーからの需要が尽きません。サブステータスに「詠唱速度」がついていれば数千円で取引されることもあります。</li>
-                    <li><strong>ナイト用の「最大HP％」特化重鎧：</strong> ボス周回に必須のため高値安定。</li>
-                    <li><strong>ルビーが完璧に装飾された防具：</strong> Act2-8対策で初心者がこぞって買うため、回転率が非常に高い商材です。</li>
+                    <li><strong>ゲーム内ゴールド：</strong> キューブ → 錬金術 (Alchemy)</li>
+                    <li><strong>リアルマネー取引：</strong> 左上の交易船アイコン（SteamTradeShip）から。キューブLv10で解放</li>
+                    <li><strong>出品手順：</strong> 交易船アイコンをクリック → アイテムをドラッグでSteamインベントリへ → Steamマーケットで出品</li>
+                    <li><strong>購入後の受取：</strong> マーケットで購入したアイテムは<strong>ゲーム内メール</strong>に届きます。10秒待ってから更新ボタンを押して受け取り</li>
+                    <li><strong>出品前：</strong> ソケットに宝石等が付いている場合はキューブのRemoval機能で除去</li>
                 </ul>
-                <p>※マーケットの購入・売却はシステム上**絶対に取り消しができません**。価格入力時の「桁間違い（例：10,000円のつもりが100円で出品）」による損失報告が掲示板で相次いでいるため、出品時は指差し確認を徹底してください。</p>
+
+                <h3>マーケット活用のコツ</h3>
+                <ul>
+                    <li><strong>欲しい装備がドロップしない時：</strong> 不要なレジェンダリーを売却し、必要な装備を購入する方が効率的</li>
+                    <li><strong>出品価格：</strong> 直近の成約価格を確認してから設定。桁間違いに注意（取り消し不可）</li>
+                    <li><strong>需要が高いアイテム：</strong> クールダウン短縮・詠唱速度付きソーサラー杖、ナイト用HP%重鎧、火炎耐性ルビー付き防具</li>
+                    <li><strong>序盤のブースト：</strong> マーケットで安価なレジェンダリー武器を購入 → 錬金術で約14万ゴールドに変換 → ルーン解放を加速（通称：課金ブースト）</li>
+                </ul>
+                <p>※マーケットの売買は<strong>絶対に取り消し不可</strong>です。出品時は価格を指差し確認してください。</p>
+            </section>
+
+            <section id="settings">
+                <h2>11. 設定・ショートカット・トラブル対処</h2>
+
+                <h3>公式ショートカットキー</h3>
+                <table>
+                    <thead>
+                        <tr><th>キー</th><th>効果</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><kbd>Shift</kbd> + <kbd>F12</kbd></td><td>ウィンドウ位置をリセット（画面外に消えた時に最優先で試す）</td></tr>
+                        <tr><td><kbd>Shift</kbd> + <kbd>F11</kbd></td><td>ウィンドウスケールをリセット（DPI変更後に小さくなった時）</td></tr>
+                        <tr><td><kbd>Alt</kbd> + <kbd>左クリック</kbd></td><td>アイテムをロック（錬金術・合成の誤消費防止）</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>推奨ゲーム設定</h3>
+                <ul>
+                    <li><strong>自動リトライ：</strong> ON（ステージ失敗時に自動で再挑戦）</li>
+                    <li><strong>宝箱自動開封：</strong> ぜんまいのルーン解放後にON</li>
+                    <li><strong>マルチモニター環境：</strong> モニター移動後はShift+F12 → Shift+F11の順で試す</li>
+                </ul>
+
+                <h3>よくあるトラブルと対処法</h3>
+                <h4>黒い画面が出てゲームが進行しない</h4>
+                <p>Steamライブラリ → TBH右クリック → 管理 → ローカルファイルを閲覧 → <code>TaskBarHero.exe</code> 右クリック → プロパティ → 互換性タブ → <strong>「全画面表示の最適化を無効にする」</strong>にチェック。さらに高DPI設定で<strong>「アプリケーション」</strong>を選択。</p>
+
+                <h4>ウィンドウが画面外に行った</h4>
+                <p><kbd>Shift</kbd> + <kbd>F12</kbd> で位置リセット。効かない場合は <kbd>Shift</kbd> + <kbd>F11</kbd> でスケールもリセット。</p>
+
+                <h4>宝箱が落ちない・開けない</h4>
+                <p>①レベル差ペナルティ（キャラLv+6程度のステージか確認）②メール確認→10秒待機→更新 ③オプション→「インベントリ問題解決」④インベントリが満杯でないか確認</p>
+
+                <h4>スキルが効かない</h4>
+                <p>スキルを習得した後、<strong>装備スロットにセット</strong>していますか？ 習得だけでは発動しません。</p>
+
+                <h4>マーケットで買った装備が見つからない</h4>
+                <p>ゲーム内メール（右上のメールアイコン）を確認。10秒待ってから更新ボタンを押してください。</p>
             </section>
 
             <section id="missable">
-                <h2>8. 取り返しのつかない要素・よくある質問（FAQ）</h2>
-                
-                <h3>取り返しのつかない要素まとめ</h3>
+                <h2>12. よくある質問（FAQ）</h2>
+
+                <h3>取り返しのつかない要素</h3>
                 <ul style="color: var(--accent); font-weight: bold;">
                     <li>キューブの錬金術での誤消費（ロック忘れによる装備ロスト）</li>
-                    <li>装飾で使った素材の消滅（除去しても戻りません）</li>
+                    <li>装飾で使った宝石の消滅（除去しても宝石は戻らない）</li>
                     <li>Steamマーケットでの売買（キャンセル不可）</li>
-                    <li>ルーンの解放と強化（ポイントやゴールドの振り直し不可）</li>
+                    <li>ルーンの解放（ゴールドの振り直し不可）</li>
                 </ul>
-                <p>逆に「取り返しがつく要素」として、<strong>キャラクターのスキルポイント</strong>は「返還」ボタンを押すことでいつでもペナルティなしで振り直しが可能です。また、購入したDLCクラスの出現もSteamのプロパティからオン/オフを切り替えられます。</p>
+                <p>逆に<strong>スキルポイントは返還ボタンでいつでも無料リセット可能</strong>です。DLCクラスの出現もSteamのプロパティからオン/オフ切り替え可能。</p>
 
-                <h3>Q. 黒い画面が出たままゲームが進行しない（表示バグ）</h3>
-                <p>A. タスクバーのウィンドウが透過されず黒い背景になる不具合です。<br>
-                1. SteamのライブラリからTBHを右クリック ＞ 管理 ＞「ローカルファイルを閲覧」<br>
-                2. <code>TaskBarHero.exe</code> を右クリック ＞「プロパティ」＞「互換性」タブ<br>
-                3. <strong>「全画面表示の最適化を無効にする」</strong>にチェック。<br>
-                4. さらに「高DPI設定の変更」から<strong>「高いDPIスケールの動作を上書きします」</strong>にチェックを入れ「アプリケーション」を選択して適用してください。</p>
+                <h3>Q. ナイトとレンジャー、どちらで始めるべき？</h3>
+                <p>A. ナイトは耐久重視で安全、レンジャーは周回速度重視。どちらでも問題ありませんが、2人目にプリーストを入れるのが鉄板です。</p>
 
-                <h3>Q. ウィンドウが画面外に行ってマウスで掴めなくなった！</h3>
-                <p>A. キーボードの <code>Shift + F12</code> を押してください。ウィンドウの位置が画面の中央に強制的にリセットされます。</p>
+                <h3>Q. ハンターを買ったのに3人出撃できない</h3>
+                <p>A. DLCはクラスを解放するだけで、ヒーロー枠は増えません。ルーンツリーの「指揮のルーン」で枠を増やし、編成画面でハンターを配置してください。</p>
 
-                <h3>Q. 半日放置しても宝箱が落ちていない...</h3>
-                <p>A. 「ドロップペナルティ」に引っかかっている可能性が高いです。キャラクターのレベルに対して、ステージの敵レベルが低すぎる（レベル差が10以上）場合、アイテムドロップ率と経験値がゼロになる仕様です。常に「キャラLv +6」程度の適正ステージを周回させてください。</p>
+                <h3>Q. ソウルストーンは失敗すると消える？</h3>
+                <p>A. いいえ。アクトボスの撃破に<strong>成功した時のみ</strong>消費されます。何度でも挑戦可能です。</p>
+
+                <h3>Q. オフライン放置で宝箱は落ちる？</h3>
+                <p>A. 落ちません。Steamを閉じた状態では宝箱ドロップはゼロです。ゴールド・経験値のみ安息のルーン解放後に一部獲得できます。</p>
+
+                <h3>Q. 序盤で白装備を合成すべき？</h3>
+                <p>A. 基本的にNo。ゴールドが必要なら錬金術で売却し、白素材は後のクラフト用に温存しましょう。</p>
+
+                <h3>Q. プリーストDLCは本当に無料？</h3>
+                <p>A. はい。SteamストアのDLCタブから「TBH: Task Bar Hero — Priest (Class)」を$0.00で入手してください。初回プレイ前に必ず追加しましょう。</p>
+
+                <h3>Q. 合成でレベル10の装備がレベル5になった</h3>
+                <p>A. キューブの合成レベルが低いと失敗時にダウングレードします。高レベル装備を合成する前にキューブレベルを上げましょう。</p>
             </section>
 
             <section id="bbs-section">
@@ -765,13 +1195,14 @@
 
             <h3>人気攻略メニュー</h3>
             <ul style="list-style: none; padding-left: 0; line-height: 2.2;">
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#classes">▶ 最強キャラランキング</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#classes">▶ 最強パーティ・編成のコツ</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#world">▶ 経験値効率一覧・時給</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#runes">▶ ルーン取得優先度・コスト</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#pets">▶ ペット泥場所・神話ペット</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#market">▶ Steam金策・稼げるアイテム</a></li>
-                <li style="border-bottom: 1px dashed var(--border);"><a href="#missable">▶ 黒い画面の直し方</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#chests">▶ 宝箱ローテーション術</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#runes">▶ ルーン解放優先度</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#classes">▶ 最強パーティ編成</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#skills">▶ スキルビルド推奨</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#offline">▶ オフライン注意点</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#world">▶ アクト別攻略</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#market">▶ Steamマーケット</a></li>
+                <li style="border-bottom: 1px dashed var(--border);"><a href="#settings">▶ ショートカット・不具合対処</a></li>
                 <li style="border-bottom: 1px dashed var(--border);"><a href="#bbs-section" style="color: var(--accent);">▶ 💬 雑談・質問掲示板</a></li>
             </ul>
 
@@ -783,10 +1214,13 @@
         </aside>
     </div>
 
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="ページトップへ">↑</button>
+
     <footer>
-        <p>&copy; 2026 タスクバーヒーロー攻略Wiki【完全版】. All Rights Reserved.</p>
+        <p>&copy; 2026 タスクバーヒーロー攻略Wiki. All Rights Reserved. | 最終更新: 2026年6月25日</p>
         <div style="font-size: 0.9em; margin-top: 20px;">
             <a href="#" style="color: #bdc3c7; margin: 0 15px;">ページトップ</a> | 
+            <a href="https://store.steampowered.com/app/3678970/TBH_Task_Bar_Hero/" style="color: #bdc3c7; margin: 0 15px;" target="_blank" rel="noopener">Steamストア</a> |
             <a href="https://www.yamastudio.net/privacy.html" style="color: #bdc3c7; margin: 0 15px;">プライバシーポリシー</a> |
             <a href="https://www.yamastudio.net/contact.html" style="color: #bdc3c7; margin: 0 15px;">お問い合わせ</a>
         </div>
@@ -842,9 +1276,15 @@
             if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
-            // 掲示板初期読み込み（HTMLの準備ができた直後に実行）
             fetchBbsMessages();
             updateRealTimePlayers();
+
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    backToTop.classList.toggle('visible', window.scrollY > 400);
+                });
+            }
         });
 
 // ==========================================
